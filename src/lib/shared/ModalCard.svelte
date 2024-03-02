@@ -2,7 +2,6 @@
 	import { browser } from '$app/environment'
 	import { step, type Step } from '$lib/pledgeStore'
 	import { createFocusTrap, type FocusTrap } from 'focus-trap'
-	import { createEventDispatcher } from 'svelte'
 	import { XIcon } from 'svelte-feather-icons'
 
 	export let title: string
@@ -12,33 +11,33 @@
 	let closeButton: HTMLButtonElement
 	let focusTrap: FocusTrap | null = null
 
-	let dispatchEvent = createEventDispatcher()
+	function activateFocusTrap() {
+		if (!browser) return
 
-	// function activateFocusTrap() {
-	// 	if (!browser) return
+		setTimeout(() => {
+			focusTrap = createFocusTrap(modalElement, {
+				fallbackFocus: closeButton
+			})
+			focusTrap.activate()
+		}, 200)
+	}
 
-	// 	focusTrap = createFocusTrap(modalElement, {
-	// 		fallbackFocus: closeButton
-	// 	})
-	// 	focusTrap.activate()
-	// }
+	function deactivateFocusTrap() {
+		if (!browser) return
+		if (!focusTrap) return
 
-	// function deactivateFocusTrap() {
-	// 	if (!browser) return
-	// 	if (!focusTrap) return
+		focusTrap.deactivate()
+		focusTrap = null
+	}
 
-	// 	focusTrap.deactivate()
-	// 	focusTrap = null
-	// }
-
-	// // Activate focus trap when we are selected, and deactivate when not
-	// $: if (modalElement) {
-	// 	if ($step === forStep) {
-	// 		activateFocusTrap()
-	// 	} else {
-	// 		deactivateFocusTrap()
-	// 	}
-	// }
+	// Activate focus trap when we are selected, and deactivate when not
+	$: if (modalElement) {
+		if ($step === forStep) {
+			activateFocusTrap()
+		} else {
+			deactivateFocusTrap()
+		}
+	}
 </script>
 
 <div class="flex h-full flex-col justify-end px-4" bind:this={modalElement}>
