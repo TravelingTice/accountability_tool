@@ -1,17 +1,12 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import type { PageServerData } from './$types'
 	import PledgeDetails from '$lib/PledgeDetails.svelte'
 	import ButtonLink from '$lib/shared/ButtonLink.svelte'
 
 	export let data: PageServerData
-
-	onMount(() => {
-		console.log(data)
-	})
 </script>
 
-<section class="flex flex-col items-center space-y-8 px-4 py-6 text-center">
+<section class="flex flex-col items-center space-y-8 px-4 py-8 text-center">
 	<h1>You did it!</h1>
 	<p>
 		Congratulations! Just now you linked MASSIVE PAIN to not following up on your goals. You put

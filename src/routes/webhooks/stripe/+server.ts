@@ -26,8 +26,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		const { amount, goal, name, email, consequence, partnerName, partnerEmail, deadline } =
 			session.metadata as unknown as Omit<Pledge, 'amount'> & { amount: string }
 
-		prisma.pledge
-			.create({
+		try {
+			await prisma.pledge.create({
 				data: {
 					name,
 					email,
@@ -39,9 +39,9 @@ export const POST: RequestHandler = async ({ request }) => {
 					deadline: new Date(deadline)
 				}
 			})
-			.catch((err) => {
-				console.error('Error creating pledge', err)
-			})
+		} catch (err) {
+			return error(500, `Error creating pledge: ${JSON.stringify(err)}`)
+		}
 	}
 
 	return json({ received: true })

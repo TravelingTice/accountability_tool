@@ -10,9 +10,9 @@
 	}
 </script>
 
-<section class="flex flex-col items-center px-4 py-6 text-center">
-	<h1 class="mb-8">Do it or else...</h1>
-	<h2 class="mb-8">Link MASSIVE PAIN to not following through on your goals</h2>
+<section class="mb-6 flex flex-col items-center space-y-8 px-4 pt-8 text-center">
+	<h1>Do it or else...</h1>
+	<h2>Link MASSIVE PAIN to not following through on your goals</h2>
 	<form on:submit|preventDefault={handleSubmit} class="space-y-2">
 		<label for="goal">What is your goal?</label>
 
