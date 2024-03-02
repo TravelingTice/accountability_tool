@@ -23,5 +23,5 @@ model Pledge {
   amount        Float
   partnerName   String
   partnerEmail  String
-  public        Boolean  @default(false)
+  canPublic     Boolean  @default(false)
 }

@@ -10,7 +10,9 @@
 		partnerName,
 		step,
 		type Pledge,
-		type WithNullableProperties
+		type WithNullableProperties,
+		notifyPartner,
+		canPublic
 	} from './pledgeStore'
 	import Checkbox from './shared/Checkbox.svelte'
 	import { consequenceAsWord } from './consequenceAsSentence'
@@ -20,8 +22,6 @@
 	let agree2 = false
 	let error1 = false
 	let error2 = false
-
-	let sendPartnerEmail = true
 
 	$: pledge = {
 		amount: $amount,
@@ -70,9 +70,14 @@
 				/>
 			{/if}
 			<Checkbox
-				id="sendPartnerEmail"
-				bind:checked={sendPartnerEmail}
+				id="notifyPartner"
+				bind:checked={$notifyPartner}
 				text="Send my accountability partner an email with the details of this pledge"
+			/>
+			<Checkbox
+				id="canPublic"
+				bind:checked={$canPublic}
+				text="I allow my pledge to be displayed on the website (optional)"
 			/>
 			<div class="flex justify-between">
 				<Button variant="outline" type="button" on:click={step.previous}>Back</Button>

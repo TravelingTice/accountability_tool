@@ -6,8 +6,17 @@ import Stripe from 'stripe'
 const stripe = new Stripe(SECRET_STRIPE_KEY)
 
 export const POST: RequestHandler = async ({ request }) => {
-	const { amount, goal, consequence, partnerName, partnerEmail, deadline, name } =
-		await request.json()
+	const {
+		amount,
+		goal,
+		consequence,
+		partnerName,
+		partnerEmail,
+		deadline,
+		name,
+		canPublic,
+		notifyPartner
+	} = await request.json()
 
 	const cancelSearchParams = new URLSearchParams()
 	cancelSearchParams.set('cancel', 'true')
@@ -21,18 +30,24 @@ export const POST: RequestHandler = async ({ request }) => {
 	cancelSearchParams.set('partnerEmail', partnerEmail)
 	cancelSearchParams.set('deadline', deadline)
 	cancelSearchParams.set('name', name)
+	cancelSearchParams.set('notifyPartner', notifyPartner)
+	cancelSearchParams.set('canPublic', canPublic)
 
 	const session = await stripe.checkout.sessions.create({
 		payment_method_types: ['card'],
 		metadata: {
-			amount,
-			goal,
-			consequence,
-			partnerName,
-			partnerEmail,
-			deadline,
-			name
-		} satisfies Pledge,
+			pledge: JSON.stringify({
+				amount,
+				goal,
+				consequence,
+				partnerName,
+				partnerEmail,
+				deadline,
+				canPublic,
+				name
+			} satisfies Pledge),
+			notifyPartner
+		},
 		line_items: [
 			{
 				price_data: {
@@ -47,7 +62,6 @@ export const POST: RequestHandler = async ({ request }) => {
 		],
 		mode: 'payment',
 		success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-		// TODO: When cancel, go back to the previous page, re-instate search params + step, and add cancel=true to show cancellation message.
 		cancel_url: `${request.headers.get('origin')}/?${cancelSearchParams.toString()}`
 	})
 

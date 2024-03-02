@@ -10,8 +10,8 @@
 		partnerName,
 		partnerEmail,
 		amount,
-		type Pledge,
-		type WithNullableProperties
+		canPublic,
+		notifyPartner
 	} from './pledgeStore'
 	import Input from './shared/Input.svelte'
 	import { AlertTriangleIcon } from 'svelte-feather-icons'
@@ -41,8 +41,10 @@
 				deadline: $deadline,
 				consequence: $consequence,
 				partnerName: $partnerName,
-				partnerEmail: $partnerEmail
-			} satisfies WithNullableProperties<Pledge>)
+				partnerEmail: $partnerEmail,
+				canPublic: $canPublic,
+				notifyPartner: $notifyPartner
+			})
 		})
 
 		const { redirectTo } = await response.json()

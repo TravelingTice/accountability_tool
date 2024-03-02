@@ -20,31 +20,41 @@ export const POST: RequestHandler = async ({ request }) => {
 		return error(400, `Webhook Error: ${err.message}`)
 	}
 
-	if (event.type === 'checkout.session.completed') {
-		const session = event.data.object as Stripe.Checkout.Session
+	if (event.type !== 'checkout.session.completed') return json({ received: false })
 
-		const { amount, goal, name, consequence, partnerName, partnerEmail, deadline } =
-			session.metadata as unknown as Omit<Pledge, 'amount'> & { amount: string }
+	const session = event.data.object as Stripe.Checkout.Session
 
-		const email = session.customer_details?.email ?? ''
+	if (!session.metadata?.pledge) return error(400, 'No pledge metadata found')
 
-		try {
-			await prisma.pledge.create({
-				data: {
-					name,
-					email,
-					amount: parseInt(amount),
-					goal,
-					consequence,
-					partnerName,
-					partnerEmail,
-					deadline: new Date(deadline)
-				}
-			})
-		} catch (err) {
-			return error(500, `Error creating pledge: ${JSON.stringify(err)}`)
-		}
+	const pledge = JSON.parse(session.metadata.pledge) as Pledge
+
+	const { amount, goal, name, consequence, partnerName, partnerEmail, deadline, canPublic } = pledge
+
+	const email = session.customer_details?.email ?? ''
+
+	try {
+		await prisma.pledge.create({
+			data: {
+				name,
+				email,
+				amount,
+				goal,
+				canPublic,
+				consequence,
+				partnerName,
+				partnerEmail,
+				deadline: new Date(deadline)
+			}
+		})
+	} catch (err) {
+		return error(500, `Error creating pledge: ${JSON.stringify(err)}`)
 	}
+
+	const { notifyPartner } = session.metadata
+
+	// if (notifyPartner === 'true') {
+
+	// }
 
 	return json({ received: true })
 }

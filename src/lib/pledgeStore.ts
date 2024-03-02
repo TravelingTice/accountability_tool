@@ -67,6 +67,12 @@ export const partnerName = queryParam('partnerName', ssp.string(), { pushHistory
 
 export const partnerEmail = queryParam('partnerEmail', ssp.string(), { pushHistory: false })
 
+export const notifyPartner = queryParam('notifyPartner', ssp.boolean(true), {
+	pushHistory: false
+})
+
+export const canPublic = queryParam('canPublic', ssp.boolean(false), { pushHistory: false })
+
 export const name = queryParam('name', ssp.string(), { pushHistory: false })
 
 export type Pledge = {
@@ -77,6 +83,7 @@ export type Pledge = {
 	name: string
 	partnerName: string
 	partnerEmail: string
+	canPublic: boolean
 }
 
 export type WithNullableProperties<T> = {

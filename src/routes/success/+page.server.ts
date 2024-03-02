@@ -15,5 +15,5 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	if (!session.metadata) return error(404, 'No metadata found in session')
 
-	return session.metadata as unknown as Pledge
+	return JSON.parse(session.metadata.pledge) as unknown as Pledge
 }
