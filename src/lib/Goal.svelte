@@ -3,7 +3,7 @@
 	import { AlertTriangleIcon, CheckIcon } from 'svelte-feather-icons'
 	import Input from './shared/Input.svelte'
 	import Button from './shared/Button.svelte'
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import { onMount } from 'svelte'
 
 	let error = false
@@ -19,7 +19,7 @@
 	})
 </script>
 
-<Step title="Create your pledge">
+<ModalCard title="Create your pledge">
 	<div class="space-y-2">
 		<div class="flex gap-2">
 			<AlertTriangleIcon size="20" class="mt-1 shrink-0 text-yellow-400" />
@@ -69,4 +69,4 @@
 		{#if error}<p class="text-sm text-red-400">Goal cannot be blank</p>{/if}
 		<Button>Confirm</Button>
 	</form>
-</Step>
+</ModalCard>

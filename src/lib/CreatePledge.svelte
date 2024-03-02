@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Modal from './shared/Modal.svelte'
+	import ModalContainer from './shared/ModalContainer.svelte'
 	import { modalOpen, step } from './pledgeStore'
 	import Goal from './Goal.svelte'
 	import Deadline from './Deadline.svelte'
@@ -17,7 +17,7 @@
 	}
 </script>
 
-<Modal isOpen={$modalOpen && Boolean($step)} on:close={onClose}>
+<ModalContainer isOpen={$modalOpen && Boolean($step)} on:close={onClose}>
 	{#if $step === 'goal'}
 		<Goal />
 	{:else if $step === 'deadline'}
@@ -33,4 +33,4 @@
 	{:else if $step === 'you'}
 		<You />
 	{/if}
-</Modal>
+</ModalContainer>

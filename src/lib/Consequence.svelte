@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import { consequence, step } from './pledgeStore'
 	import Button from './shared/Button.svelte'
 
@@ -14,7 +14,7 @@
 	})
 </script>
 
-<Step title="What will your consequence be if you don't follow through?">
+<ModalCard title="What will your consequence be if you don't follow through?">
 	<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
 		<div role="radiogroup" aria-labelledby="groupLabel">
 			<p class="sr-only" id="groupLabel">Choose a consequence:</p>
@@ -61,7 +61,7 @@
 			<Button>Continue</Button>
 		</div>
 	</form>
-</Step>
+</ModalCard>
 
 <style>
 	[role='radiogroup'] {

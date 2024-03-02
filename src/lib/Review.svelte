@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import Button from './shared/Button.svelte'
 	import {
 		amount,
@@ -48,7 +48,7 @@
 	})
 </script>
 
-<Step title="Please review your pledge">
+<ModalCard title="Please review your pledge">
 	<div class="space-y-8">
 		<div class="space-y-4">
 			<p>Please carefully review the details of your pledge:</p>
@@ -86,4 +86,4 @@
 			</div>
 		</form>
 	</div>
-</Step>
+</ModalCard>

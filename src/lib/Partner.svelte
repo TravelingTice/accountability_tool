@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import Button from './shared/Button.svelte'
 	import { partnerName, partnerEmail, step } from './pledgeStore'
 	import { onMount } from 'svelte'
@@ -33,7 +33,7 @@
 	})
 </script>
 
-<Step title="Who will keep you accountable?">
+<ModalCard title="Who will keep you accountable?">
 	<p>
 		At the end of your challenge on the day of your deadline, we will send your accountability
 		partner an email, asking them if you really achieved your goal.
@@ -69,4 +69,4 @@
 			<Button>Continue</Button>
 		</div>
 	</form>
-</Step>
+</ModalCard>

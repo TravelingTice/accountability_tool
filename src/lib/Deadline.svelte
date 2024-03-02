@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import Button from './shared/Button.svelte'
 	import { deadline, step } from './pledgeStore'
 	import DateInput from './shared/DateInput.svelte'
@@ -38,7 +38,7 @@
 	})
 </script>
 
-<Step title="When will you complete your goal by?">
+<ModalCard title="When will you complete your goal by?">
 	<form on:submit|preventDefault={handleSubmit} class="space-y-2">
 		<label class="block" for="deadline">Deadline</label>
 
@@ -49,4 +49,4 @@
 			<Button>Continue</Button>
 		</div>
 	</form>
-</Step>
+</ModalCard>

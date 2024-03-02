@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import { amount, step } from './pledgeStore'
 	import Button from './shared/Button.svelte'
 
@@ -32,7 +32,7 @@
 	})
 </script>
 
-<Step title="How much will you donate?">
+<ModalCard title="How much will you donate?">
 	<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
 		<label for="dropdown">Donation amount:</label>
 		<select
@@ -51,7 +51,7 @@
 			<Button>Continue</Button>
 		</div>
 	</form>
-</Step>
+</ModalCard>
 
 <style>
 	select.error {

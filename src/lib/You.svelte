@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Step from './Step.svelte'
+	import ModalCard from './shared/ModalCard.svelte'
 	import Button from './shared/Button.svelte'
 	import {
 		name,
@@ -53,7 +53,7 @@
 	})
 </script>
 
-<Step title="Fill in your details">
+<ModalCard title="Fill in your details">
 	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 		<div class="space-y-2">
 			<label class="block" for="name">Your name</label>
@@ -67,4 +67,4 @@
 			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
 		</div>
 	</form>
-</Step>
+</ModalCard>
