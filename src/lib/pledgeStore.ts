@@ -35,3 +35,16 @@ export const amount = queryParam('amount', ssp.number(), { pushHistory: false })
 export const partnerName = queryParam('partnerName', ssp.string(), { pushHistory: false })
 
 export const partnerEmail = queryParam('partnerEmail', ssp.string(), { pushHistory: false })
+
+export type Pledge = {
+	goal: string
+	deadline: string
+	consequence: Consequence
+	amount: number
+	partnerName: string
+	partnerEmail: string
+}
+
+export type WithNullableProperties<T> = {
+	[P in keyof T]: T[P] | null
+}

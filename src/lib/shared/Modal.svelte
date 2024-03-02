@@ -71,7 +71,7 @@
 
 			<div
 				bind:this={modalElement}
-				class="relative inline-block transform overflow-hidden rounded-lg bg-gray-900 px-4 pb-4 pt-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle"
+				class="relative inline-block transform overflow-hidden rounded-lg bg-gray-900 px-4 pb-6 pt-6 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle"
 				transition:fade={{ duration: 300 }}
 			>
 				<button
@@ -82,7 +82,6 @@
 					<XIcon />
 					<span class="sr-only">Close this popup window</span></button
 				>
-				<!-- Also make sure focus gets trapped in the modal -->
 				<slot />
 			</div>
 		</div>

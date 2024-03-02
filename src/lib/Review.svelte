@@ -8,12 +8,14 @@
 		goal,
 		partnerEmail,
 		partnerName,
-		step
+		step,
+		type Pledge,
+		type WithNullableProperties
 	} from './pledgeStore'
 	import { onMount } from 'svelte'
 	import Checkbox from './shared/Checkbox.svelte'
-	import { CalendarIcon, FlagIcon, UserCheckIcon, XIcon } from 'svelte-feather-icons'
-	import { consequenceAsSentence, consequenceAsWord } from './consequenceAsSentence'
+	import { consequenceAsWord } from './consequenceAsSentence'
+	import PledgeDetails from './PledgeDetails.svelte'
 
 	let agree1 = false
 	let agree2 = false
@@ -22,24 +24,37 @@
 
 	let sendPartnerEmail = true
 
-	const handleSubmit = () => {
+	$: pledge = {
+		amount: $amount,
+		goal: $goal,
+		deadline: $deadline,
+		partnerName: $partnerName,
+		partnerEmail: $partnerEmail,
+		consequence: $consequence
+	} satisfies WithNullableProperties<Pledge>
+
+	const handleSubmit = async () => {
 		if (!agree1) error1 = true
 		if (!agree2) error2 = true
 		if (error1 || error2) return
 
-		console.log('Pledge confirmed, lets go')
+		const response = await fetch('/api/checkout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(pledge)
+		})
+
+		const { redirectTo } = await response.json()
+
+		window.location = redirectTo
 	}
 
 	onMount(() => {
 		// Weird searchparams bug where this param gets reset when navigating to it
 		$step = 'review'
 	})
-
-	$: deadlineStr = new Intl.DateTimeFormat('en-US', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric'
-	}).format(new Date($deadline ?? ''))
 </script>
 
 <Step title="Please review your pledge">
@@ -47,31 +62,7 @@
 		<div class="space-y-4">
 			<p>Please carefully review the details of your pledge:</p>
 
-			<ul class="review-list">
-				<li>
-					<FlagIcon class="shrink-0" />
-					<p>Goal: <strong>{$goal}</strong></p>
-				</li>
-				<li>
-					<CalendarIcon />
-					<p>Deadline: <strong>{deadlineStr}</strong></p>
-				</li>
-				<li>
-					<XIcon class="shrink-0" />
-					<p>
-						Consequence of not reaching goal:
-						<strong
-							>{$consequence && $amount && consequenceAsSentence($consequence, $amount)}</strong
-						>
-					</p>
-				</li>
-				<li>
-					<UserCheckIcon class="shrink-0" />
-					<p>
-						Accountability partner: <strong>{$partnerName} ({$partnerEmail})</strong>
-					</p>
-				</li>
-			</ul>
+			<PledgeDetails {pledge} />
 		</div>
 
 		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
@@ -102,13 +93,3 @@
 		</form>
 	</div>
 </Step>
-
-<style>
-	.review-list {
-		@apply space-y-4;
-	}
-
-	.review-list li {
-		@apply flex gap-2;
-	}
-</style>
