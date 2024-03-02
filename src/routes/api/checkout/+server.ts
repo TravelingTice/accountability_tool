@@ -9,6 +9,19 @@ export const POST: RequestHandler = async ({ request }) => {
 	const { amount, goal, consequence, partnerName, partnerEmail, deadline, name } =
 		await request.json()
 
+	const cancelSearchParams = new URLSearchParams()
+	cancelSearchParams.set('cancel', 'true')
+
+	// Reinstate search params to previous state
+	cancelSearchParams.set('step', 'you')
+	cancelSearchParams.set('amount', amount)
+	cancelSearchParams.set('goal', goal)
+	cancelSearchParams.set('consequence', consequence)
+	cancelSearchParams.set('partnerName', partnerName)
+	cancelSearchParams.set('partnerEmail', partnerEmail)
+	cancelSearchParams.set('deadline', deadline)
+	cancelSearchParams.set('name', name)
+
 	const session = await stripe.checkout.sessions.create({
 		payment_method_types: ['card'],
 		metadata: {
@@ -35,7 +48,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		mode: 'payment',
 		success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
 		// TODO: When cancel, go back to the previous page, re-instate search params + step, and add cancel=true to show cancellation message.
-		cancel_url: `${request.headers.get('origin')}/cancel`
+		cancel_url: `${request.headers.get('origin')}/?${cancelSearchParams.toString()}`
 	})
 
 	return json({ redirectTo: session.url }, { status: 201 })

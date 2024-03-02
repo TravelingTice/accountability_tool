@@ -11,14 +11,13 @@
 
 	$: if (browser && $step && siemaContainer) {
 		if (siema) {
-			if ($step) {
-				siema.goTo(steps.indexOf($step))
-			}
+			siema.goTo(steps.indexOf($step))
 		} else {
 			siema = new Siema({
 				draggable: false,
 				multipleDrag: false,
 				selector: siemaContainer,
+				startIndex: steps.indexOf($step),
 				duration: 200,
 				easing: 'ease-in-out',
 				onInit: () => {

@@ -14,7 +14,7 @@
 	}
 
 	onMount(() => {
-		$step = 'goal'
+		if ($step === null) $step = 'goal'
 	})
 </script>
 
