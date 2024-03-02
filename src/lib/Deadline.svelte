@@ -28,7 +28,7 @@
 			error = 'The date must not be more than one year into the future.'
 		} else {
 			error = null
-			$step = 'consequence'
+			step.next()
 		}
 	}
 
@@ -44,6 +44,9 @@
 
 		<DateInput error={Boolean(error)} bind:value={$deadline} />
 		{#if error}<p class="text-sm text-red-400">{error}</p>{/if}
-		<Button>Continue</Button>
+		<div class="flex justify-between">
+			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
+			<Button>Continue</Button>
+		</div>
 	</form>
 </Step>

@@ -39,7 +39,7 @@
 		if (!agree2) error2 = true
 		if (error1 || error2) return
 
-		$step = 'you'
+		step.next()
 	}
 
 	onMount(() => {
@@ -80,7 +80,10 @@
 				bind:checked={sendPartnerEmail}
 				text="Send my accountability partner an email with the details of this pledge"
 			/>
-			<Button>Confirm and Pay</Button>
+			<div class="flex justify-between">
+				<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
+				<Button>Confirm and Pay</Button>
+			</div>
 		</form>
 	</div>
 </Step>

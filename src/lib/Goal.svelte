@@ -10,7 +10,7 @@
 
 	const handleSubmit = () => {
 		if (!$goal) return (error = true)
-		else $step = 'deadline'
+		else step.next()
 	}
 
 	onMount(() => {

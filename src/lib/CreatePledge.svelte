@@ -28,9 +28,9 @@
 		<Money />
 	{:else if $step === 'partner'}
 		<Partner />
-	{:else if $step === 'you'}
-		<You />
 	{:else if $step === 'review'}
 		<Review />
+	{:else if $step === 'you'}
+		<You />
 	{/if}
 </Modal>

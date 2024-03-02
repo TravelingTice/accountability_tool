@@ -24,7 +24,7 @@
 			return
 		}
 
-		$step = 'review'
+		step.next()
 	}
 
 	onMount(() => {
@@ -64,6 +64,9 @@
 			{#if emailError}<p class="text-sm text-red-400">{emailError}</p>{/if}
 		</div>
 
-		<Button>Continue</Button>
+		<div class="flex justify-between">
+			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
+			<Button>Continue</Button>
+		</div>
 	</form>
 </Step>

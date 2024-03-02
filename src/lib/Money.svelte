@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
 	import Step from './Step.svelte'
-	import { amount, consequence, step } from './pledgeStore'
+	import { amount, step } from './pledgeStore'
 	import Button from './shared/Button.svelte'
 
 	let selectedValue = $amount ? $amount.toString() : ''
+
+	let error = false
 
 	$: if (selectedValue) {
 		$amount = parseInt(selectedValue)
@@ -19,7 +21,9 @@
 	]
 
 	const handleSubmit = () => {
-		$step = 'partner'
+		if (selectedValue === '') return (error = true)
+
+		step.next()
 	}
 
 	onMount(() => {
@@ -33,6 +37,7 @@
 		<label for="dropdown">Donation amount:</label>
 		<select
 			id="dropdown"
+			class:error
 			class="rounded-lg border border-gray-600 bg-gray-900 px-4 py-2.5 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
 			bind:value={selectedValue}
 		>
@@ -41,8 +46,15 @@
 			{/each}
 		</select>
 
-		{#if $amount}
+		<div class="flex justify-between">
+			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
 			<Button>Continue</Button>
-		{/if}
+		</div>
 	</form>
 </Step>
+
+<style>
+	select.error {
+		@apply border-red-500 focus:ring-red-300;
+	}
+</style>

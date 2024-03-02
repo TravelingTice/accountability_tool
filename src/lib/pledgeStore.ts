@@ -7,9 +7,35 @@ import { queryParam, ssp } from 'sveltekit-search-params'
 
 export const modalOpen = createBooleanStore(false)
 
-type Step = 'goal' | 'deadline' | 'consequence' | 'money' | 'partner' | 'review' | 'you'
+const steps = ['goal', 'deadline', 'consequence', 'money', 'partner', 'review', 'you'] as const
 
-export const step = queryParam<Step>('step')
+type Step = (typeof steps)[number]
+
+const createStepStore = () => {
+	const { set, subscribe, update } = queryParam<Step>('step')
+
+	const next = () => {
+		update((step) => {
+			if (!step) return null
+
+			const nextIndex = steps.indexOf(step) + 1
+			return steps[nextIndex]
+		})
+	}
+
+	const previous = () => {
+		update((step) => {
+			if (!step) return null
+
+			const nextIndex = steps.indexOf(step) - 1
+			return steps[nextIndex]
+		})
+	}
+
+	return { set, subscribe, previous, next }
+}
+
+export const step = createStepStore()
 
 /**
  * PLEDGE STATES

@@ -62,6 +62,9 @@
 			{#if error}<p class="text-sm text-red-400">{error}</p>{/if}
 		</div>
 
-		<Button>Continue</Button>
+		<div class="flex flex-col items-center gap-8">
+			<Button>Continue to payment</Button>
+			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
+		</div>
 	</form>
 </Step>

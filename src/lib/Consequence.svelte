@@ -5,7 +5,7 @@
 	import Button from './shared/Button.svelte'
 
 	const handleSubmit = () => {
-		$step = 'money'
+		step.next()
 	}
 
 	onMount(() => {
@@ -56,9 +56,10 @@
 			</label>
 		</div>
 
-		{#if $consequence}
+		<div class="flex justify-between">
+			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
 			<Button>Continue</Button>
-		{/if}
+		</div>
 	</form>
 </Step>
 
