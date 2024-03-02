@@ -6,7 +6,7 @@ import Stripe from 'stripe'
 const stripe = new Stripe(SECRET_STRIPE_KEY)
 
 export const POST: RequestHandler = async ({ request }) => {
-	const { amount, goal, consequence, partnerName, partnerEmail, deadline, email, name } =
+	const { amount, goal, consequence, partnerName, partnerEmail, deadline, name } =
 		await request.json()
 
 	const session = await stripe.checkout.sessions.create({
@@ -18,8 +18,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			partnerName,
 			partnerEmail,
 			deadline,
-			name,
-			email
+			name
 		} satisfies Pledge,
 		line_items: [
 			{

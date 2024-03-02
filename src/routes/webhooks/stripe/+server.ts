@@ -23,8 +23,10 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (event.type === 'checkout.session.completed') {
 		const session = event.data.object as Stripe.Checkout.Session
 
-		const { amount, goal, name, email, consequence, partnerName, partnerEmail, deadline } =
+		const { amount, goal, name, consequence, partnerName, partnerEmail, deadline } =
 			session.metadata as unknown as Omit<Pledge, 'amount'> & { amount: string }
+
+		const email = session.customer_details?.email ?? ''
 
 		try {
 			await prisma.pledge.create({

@@ -31,8 +31,7 @@
 		partnerName: $partnerName,
 		partnerEmail: $partnerEmail,
 		consequence: $consequence,
-		name: null,
-		email: null
+		name: null
 	} satisfies WithNullableProperties<Pledge>
 
 	const handleSubmit = () => {

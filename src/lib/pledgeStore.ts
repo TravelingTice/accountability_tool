@@ -38,15 +38,12 @@ export const partnerEmail = queryParam('partnerEmail', ssp.string(), { pushHisto
 
 export const name = queryParam('name', ssp.string(), { pushHistory: false })
 
-export const email = queryParam('email', ssp.string(), { pushHistory: false })
-
 export type Pledge = {
 	goal: string
 	deadline: string
 	consequence: Consequence
 	amount: number
 	name: string
-	email: string
 	partnerName: string
 	partnerEmail: string
 }

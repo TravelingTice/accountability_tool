@@ -3,7 +3,6 @@
 	import Button from './shared/Button.svelte'
 	import {
 		name,
-		email,
 		step,
 		goal,
 		deadline,
@@ -17,23 +16,13 @@
 	import { onMount } from 'svelte'
 	import Input from './shared/Input.svelte'
 
-	let nameError: string | null = null
-	let emailError: string | null = null
+	let error: string | null = null
 
 	const handleSubmit = async () => {
-		nameError = null
-		emailError = null
+		error = null
 
 		if (!$name) {
-			nameError = 'Please enter your name'
-		}
-
-		if (!$email) {
-			emailError = 'Please enter your email'
-		}
-
-		if (nameError || emailError) {
-			return
+			return (error = 'Please enter your name')
 		}
 
 		// Init stripe
@@ -44,7 +33,6 @@
 			},
 			body: JSON.stringify({
 				name: $name,
-				email: $email,
 				goal: $goal,
 				amount: $amount,
 				deadline: $deadline,
@@ -70,15 +58,8 @@
 		<div class="space-y-2">
 			<label class="block" for="name">Your name</label>
 
-			<Input error={Boolean(nameError)} bind:value={$name} id="name" />
-			{#if nameError}<p class="text-sm text-red-400">{nameError}</p>{/if}
-		</div>
-
-		<div class="space-y-2">
-			<label class="block" for="email">Your email</label>
-
-			<Input type="email" error={Boolean(emailError)} bind:value={$email} id="email" />
-			{#if emailError}<p class="text-sm text-red-400">{emailError}</p>{/if}
+			<Input error={Boolean(error)} bind:value={$name} id="name" />
+			{#if error}<p class="text-sm text-red-400">{error}</p>{/if}
 		</div>
 
 		<Button>Continue</Button>
