@@ -55,7 +55,12 @@
 		<div class="space-y-2">
 			<label class="block" for="partnerEmail">Accountability partner email</label>
 
-			<Input error={Boolean(emailError)} bind:value={$partnerEmail} id="partnerEmail" />
+			<Input
+				type="email"
+				error={Boolean(emailError)}
+				bind:value={$partnerEmail}
+				id="partnerEmail"
+			/>
 			{#if emailError}<p class="text-sm text-red-400">{emailError}</p>{/if}
 		</div>
 

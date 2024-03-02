@@ -30,25 +30,17 @@
 		deadline: $deadline,
 		partnerName: $partnerName,
 		partnerEmail: $partnerEmail,
-		consequence: $consequence
+		consequence: $consequence,
+		name: null,
+		email: null
 	} satisfies WithNullableProperties<Pledge>
 
-	const handleSubmit = async () => {
+	const handleSubmit = () => {
 		if (!agree1) error1 = true
 		if (!agree2) error2 = true
 		if (error1 || error2) return
 
-		const response = await fetch('/api/checkout', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(pledge)
-		})
-
-		const { redirectTo } = await response.json()
-
-		window.location = redirectTo
+		$step = 'you'
 	}
 
 	onMount(() => {

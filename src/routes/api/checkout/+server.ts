@@ -1,11 +1,13 @@
 import { SECRET_STRIPE_KEY } from '$env/static/private'
+import type { Pledge } from '$lib/pledgeStore'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(SECRET_STRIPE_KEY)
 
 export const POST: RequestHandler = async ({ request }) => {
-	const { amount, goal, consequence, partnerName, partnerEmail, deadline } = await request.json()
+	const { amount, goal, consequence, partnerName, partnerEmail, deadline, email, name } =
+		await request.json()
 
 	const session = await stripe.checkout.sessions.create({
 		payment_method_types: ['card'],
@@ -15,8 +17,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			consequence,
 			partnerName,
 			partnerEmail,
-			deadline
-		},
+			deadline,
+			name,
+			email
+		} satisfies Pledge,
 		line_items: [
 			{
 				price_data: {

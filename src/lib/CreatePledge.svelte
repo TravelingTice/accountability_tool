@@ -7,6 +7,7 @@
 	import Money from './Money.svelte'
 	import Partner from './Partner.svelte'
 	import Review from './Review.svelte'
+	import You from './You.svelte'
 
 	$: if ($step) modalOpen.on()
 
@@ -27,6 +28,8 @@
 		<Money />
 	{:else if $step === 'partner'}
 		<Partner />
+	{:else if $step === 'you'}
+		<You />
 	{:else if $step === 'review'}
 		<Review />
 	{/if}

@@ -7,7 +7,7 @@ import { queryParam, ssp } from 'sveltekit-search-params'
 
 export const modalOpen = createBooleanStore(false)
 
-type Step = 'goal' | 'deadline' | 'consequence' | 'money' | 'partner' | 'review'
+type Step = 'goal' | 'deadline' | 'consequence' | 'money' | 'partner' | 'review' | 'you'
 
 export const step = queryParam<Step>('step')
 
@@ -36,11 +36,17 @@ export const partnerName = queryParam('partnerName', ssp.string(), { pushHistory
 
 export const partnerEmail = queryParam('partnerEmail', ssp.string(), { pushHistory: false })
 
+export const name = queryParam('name', ssp.string(), { pushHistory: false })
+
+export const email = queryParam('email', ssp.string(), { pushHistory: false })
+
 export type Pledge = {
 	goal: string
 	deadline: string
 	consequence: Consequence
 	amount: number
+	name: string
+	email: string
 	partnerName: string
 	partnerEmail: string
 }
