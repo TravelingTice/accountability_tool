@@ -1,9 +1,49 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition'
-	import { modalOpen } from '$lib/pledgeStore'
+	import { modalOpen, step } from '$lib/pledgeStore'
+	import { browser } from '$app/environment'
+
+	let modalElement: HTMLDivElement
+
+	function toggleBodyScroll(disable: boolean) {
+		if (!browser) return
+
+		if (disable) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = ''
+		}
+	}
+
+	// function activateFocusTrap() {
+	// 	if (!browser) return
+
+	// 	focusTrap = createFocusTrap(modalElement, {
+	// 		fallbackFocus: closeButton
+	// 	})
+	// 	focusTrap.activate()
+	// }
+
+	// function deactivateFocusTrap() {
+	// 	console.log('deactivate')
+	// 	if (!browser) return
+	// 	if (!focusTrap) return
+
+	// 	focusTrap.deactivate()
+	// }
+
+	$: if ($modalOpen) {
+		toggleBodyScroll(true)
+		// activateFocusTrap()
+	} else {
+		toggleBodyScroll(false)
+		// deactivateFocusTrap()
+	}
+
+	$: if ($step) modalOpen.on()
 </script>
 
-{#if $modalOpen}
+{#if $modalOpen && $step}
 	<div
 		class="fixed inset-0 z-10 overflow-y-auto"
 		aria-labelledby="modal-title"
@@ -16,7 +56,7 @@
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			on:click|self={modalOpen.off}
-			class="flex min-h-screen items-end justify-center bg-black bg-opacity-50 px-4 pb-20 pt-4 text-center sm:block sm:p-0"
+			class="flex min-h-screen flex-col justify-end bg-black bg-opacity-50 pb-20 pt-4 sm:block sm:p-0"
 		>
 			<span class="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true"
 				>&#8203;</span

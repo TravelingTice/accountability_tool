@@ -7,7 +7,15 @@ import { queryParam, ssp } from 'sveltekit-search-params'
 
 export const modalOpen = createBooleanStore(false)
 
-const steps = ['goal', 'deadline', 'consequence', 'money', 'partner', 'review', 'you'] as const
+export const steps = [
+	'goal',
+	'deadline',
+	'consequence',
+	'money',
+	'partner',
+	'review',
+	'you'
+] as const
 
 type Step = (typeof steps)[number]
 
