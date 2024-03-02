@@ -1,11 +1,16 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/shared/Button.svelte'
 	import CreatePledge from '$lib/CreatePledge.svelte'
 	import Input from '$lib/shared/Input.svelte'
-	import { goal, step } from '$lib/pledgeStore'
+	import { goal, step, consequence, type Consequence } from '$lib/pledgeStore'
 
 	const handleSubmit = () => {
 		$step = 'goal'
+	}
+
+	const handleChooseConsequence = (consequence: Consequence) => () => {
+		$step = 'goal'
+		$consequence = consequence
 	}
 </script>
 
@@ -52,7 +57,9 @@
 				</div>
 			</div>
 
-			<Button>Donate to Trump if I don't follow through</Button>
+			<Button on:click={handleChooseConsequence('trump')}
+				>Donate to Trump if I don't follow through</Button
+			>
 		</li>
 
 		<li class="space-y-4 rounded-lg border border-gray-800 p-4">
@@ -83,7 +90,9 @@
 				</div>
 			</div>
 
-			<Button>Donate to Biden if I don't follow through</Button>
+			<Button on:click={handleChooseConsequence('biden')}
+				>Donate to Biden if I don't follow through</Button
+			>
 		</li>
 
 		<li class="space-y-4 rounded-lg border border-gray-800 p-4">
@@ -108,7 +117,9 @@
 				</div>
 			</div>
 
-			<Button>Donate to the NRA if I don't follow through</Button>
+			<Button on:click={handleChooseConsequence('nra')}
+				>Donate to the NRA if I don't follow through</Button
+			>
 		</li>
 
 		<li class="space-y-4 rounded-lg border border-gray-800 p-4">
@@ -137,7 +148,9 @@
 				</div>
 			</div>
 
-			<Button>Donate to the API if I don't follow through</Button>
+			<Button on:click={handleChooseConsequence('api')}
+				>Donate to the API if I don't follow through</Button
+			>
 		</li>
 
 		<li class="space-y-4 rounded-lg border border-gray-800 p-4">
@@ -166,7 +179,9 @@
 				</div>
 			</div>
 
-			<Button>Donate to Greenpeace if I don't follow through</Button>
+			<Button on:click={handleChooseConsequence('greenpeace')}
+				>Donate to Greenpeace if I don't follow through</Button
+			>
 		</li>
 	</ul>
 </section>
