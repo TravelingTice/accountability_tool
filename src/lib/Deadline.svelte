@@ -3,7 +3,6 @@
 	import Button from './shared/Button.svelte'
 	import { deadline, step } from './pledgeStore'
 	import DateInput from './shared/DateInput.svelte'
-	import { onMount } from 'svelte'
 
 	let error: string | null = null
 
@@ -31,14 +30,9 @@
 			step.next()
 		}
 	}
-
-	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
-		$step = 'deadline'
-	})
 </script>
 
-<ModalCard title="When will you complete your goal by?">
+<ModalCard forStep="deadline" title="When will you complete your goal by?">
 	<form on:submit|preventDefault={handleSubmit} class="space-y-2">
 		<label class="block" for="deadline">Deadline</label>
 

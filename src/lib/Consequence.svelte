@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import ModalCard from './shared/ModalCard.svelte'
 	import { consequence, step } from './pledgeStore'
 	import Button from './shared/Button.svelte'
@@ -7,14 +6,9 @@
 	const handleSubmit = () => {
 		step.next()
 	}
-
-	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
-		$step = 'consequence'
-	})
 </script>
 
-<ModalCard title="What will your consequence be if you don't follow through?">
+<ModalCard forStep="consequence" title="What will your consequence be if you don't follow through?">
 	<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
 		<div role="radiogroup" aria-labelledby="groupLabel">
 			<p class="sr-only" id="groupLabel">Choose a consequence:</p>

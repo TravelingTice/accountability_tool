@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import ModalCard from './shared/ModalCard.svelte'
 	import { amount, step } from './pledgeStore'
 	import Button from './shared/Button.svelte'
@@ -25,14 +24,9 @@
 
 		step.next()
 	}
-
-	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
-		$step = 'money'
-	})
 </script>
 
-<ModalCard title="How much will you donate?">
+<ModalCard forStep="money" title="How much will you donate?">
 	<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
 		<label for="dropdown">Donation amount:</label>
 		<select

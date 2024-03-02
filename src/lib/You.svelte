@@ -13,7 +13,6 @@
 		type Pledge,
 		type WithNullableProperties
 	} from './pledgeStore'
-	import { onMount } from 'svelte'
 	import Input from './shared/Input.svelte'
 
 	let error: string | null = null
@@ -46,14 +45,9 @@
 
 		window.location = redirectTo
 	}
-
-	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
-		$step = 'you'
-	})
 </script>
 
-<ModalCard title="Fill in your details">
+<ModalCard forStep="you" title="Fill in your details">
 	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 		<div class="space-y-2">
 			<label class="block" for="name">Your name</label>

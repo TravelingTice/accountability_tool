@@ -2,10 +2,9 @@
 	import Button from '$lib/shared/Button.svelte'
 	import CreatePledge from '$lib/CreatePledge.svelte'
 	import Input from '$lib/shared/Input.svelte'
-	import { goal, modalOpen, step } from '$lib/pledgeStore'
+	import { goal, step } from '$lib/pledgeStore'
 
 	const handleSubmit = () => {
-		modalOpen.on()
 		$step = 'goal'
 	}
 </script>

@@ -2,7 +2,6 @@
 	import ModalCard from './shared/ModalCard.svelte'
 	import Button from './shared/Button.svelte'
 	import { partnerName, partnerEmail, step } from './pledgeStore'
-	import { onMount } from 'svelte'
 	import Input from './shared/Input.svelte'
 
 	let nameError: string | null = null
@@ -26,14 +25,9 @@
 
 		step.next()
 	}
-
-	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
-		$step = 'partner'
-	})
 </script>
 
-<ModalCard title="Who will keep you accountable?">
+<ModalCard forStep="partner" title="Who will keep you accountable?">
 	<p>
 		At the end of your challenge on the day of your deadline, we will send your accountability
 		partner an email, asking them if you really achieved your goal.

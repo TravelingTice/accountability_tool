@@ -14,12 +14,11 @@
 	}
 
 	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
 		$step = 'goal'
 	})
 </script>
 
-<ModalCard title="Create your pledge">
+<ModalCard forStep="goal" title="Create your pledge">
 	<div class="space-y-2">
 		<div class="flex gap-2">
 			<AlertTriangleIcon size="20" class="mt-1 shrink-0 text-yellow-400" />
@@ -67,6 +66,8 @@
 		<label for="goal-offi">Your goal:</label>
 		<Input on:keyup={() => (error = false)} {error} id="goal-offi" bind:value={$goal} />
 		{#if error}<p class="text-sm text-red-400">Goal cannot be blank</p>{/if}
-		<Button>Confirm</Button>
+		<div class="flex justify-end">
+			<Button>Confirm</Button>
+		</div>
 	</form>
 </ModalCard>

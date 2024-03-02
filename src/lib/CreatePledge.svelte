@@ -8,12 +8,13 @@
 	import Review from './Review.svelte'
 	import You from './You.svelte'
 	import CarouselContainer from './shared/CarouselContainer.svelte'
+	import { step } from './pledgeStore'
 
-	// $: if ($step) modalOpen.on()
+	const handleClose = () => ($step = null)
 </script>
 
-<ModalContainer>
-	<CarouselContainer>
+<ModalContainer on:close={handleClose}>
+	<CarouselContainer on:close={handleClose}>
 		<Goal />
 		<Deadline />
 		<Consequence />

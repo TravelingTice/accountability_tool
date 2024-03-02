@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition'
-	import { modalOpen, step } from '$lib/pledgeStore'
+	import { step } from '$lib/pledgeStore'
 	import { browser } from '$app/environment'
+	import { createEventDispatcher, onMount } from 'svelte'
 
-	let modalElement: HTMLDivElement
+	const dispatchEvent = createEventDispatcher()
+
+	let hydrated = false
 
 	function toggleBodyScroll(disable: boolean) {
 		if (!browser) return
@@ -15,35 +18,18 @@
 		}
 	}
 
-	// function activateFocusTrap() {
-	// 	if (!browser) return
-
-	// 	focusTrap = createFocusTrap(modalElement, {
-	// 		fallbackFocus: closeButton
-	// 	})
-	// 	focusTrap.activate()
-	// }
-
-	// function deactivateFocusTrap() {
-	// 	console.log('deactivate')
-	// 	if (!browser) return
-	// 	if (!focusTrap) return
-
-	// 	focusTrap.deactivate()
-	// }
-
-	$: if ($modalOpen) {
+	$: if ($step) {
 		toggleBodyScroll(true)
-		// activateFocusTrap()
 	} else {
 		toggleBodyScroll(false)
-		// deactivateFocusTrap()
 	}
 
-	$: if ($step) modalOpen.on()
+	onMount(() => {
+		hydrated = true
+	})
 </script>
 
-{#if $modalOpen && $step}
+{#if $step && hydrated}
 	<div
 		class="fixed inset-0 z-10 overflow-y-auto"
 		aria-labelledby="modal-title"
@@ -55,7 +41,7 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
-			on:click|self={modalOpen.off}
+			on:click|self={() => dispatchEvent('close')}
 			class="flex min-h-screen flex-col justify-end bg-black bg-opacity-50 pb-20 pt-4 sm:block sm:p-0"
 		>
 			<span class="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true"

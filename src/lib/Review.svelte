@@ -12,7 +12,6 @@
 		type Pledge,
 		type WithNullableProperties
 	} from './pledgeStore'
-	import { onMount } from 'svelte'
 	import Checkbox from './shared/Checkbox.svelte'
 	import { consequenceAsWord } from './consequenceAsSentence'
 	import PledgeDetails from './PledgeDetails.svelte'
@@ -41,14 +40,9 @@
 
 		step.next()
 	}
-
-	onMount(() => {
-		// Weird searchparams bug where this param gets reset when navigating to it
-		$step = 'review'
-	})
 </script>
 
-<ModalCard title="Please review your pledge">
+<ModalCard forStep="review" title="Please review your pledge">
 	<div class="space-y-8">
 		<div class="space-y-4">
 			<p>Please carefully review the details of your pledge:</p>

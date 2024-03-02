@@ -1,11 +1,8 @@
-import { createBooleanStore } from './shared/createBooleanStore'
 import { queryParam, ssp } from 'sveltekit-search-params'
 
 /**
  * UI UX STATES
  */
-
-export const modalOpen = createBooleanStore(false)
 
 export const steps = [
 	'goal',
@@ -17,7 +14,7 @@ export const steps = [
 	'you'
 ] as const
 
-type Step = (typeof steps)[number]
+export type Step = (typeof steps)[number]
 
 const createStepStore = () => {
 	const { set, subscribe, update } = queryParam<Step>('step')
