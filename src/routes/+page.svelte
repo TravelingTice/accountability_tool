@@ -1,19 +1,22 @@
 <script>
-	import Button from '$lib/Button.svelte';
+	import Button from '$lib/shared/Button.svelte'
+	import CreatePledge from '$lib/CreatePledge.svelte'
+	import Input from '$lib/shared/Input.svelte'
+	import { goal, modalOpen, step } from '$lib/pledgeStore'
+
+	const handleSubmit = () => {
+		modalOpen.on()
+		$step = 'goal'
+	}
 </script>
 
 <section class="flex flex-col items-center px-4 py-6 text-center">
 	<h1 class="mb-8">Do it or else...</h1>
 	<h2 class="mb-8">Link MASSIVE PAIN to not following through on your goals</h2>
-	<form action="" class="">
-		<label for="goal" class="mb-2 block">What is your goal?</label>
+	<form on:submit|preventDefault={handleSubmit} class="space-y-2">
+		<label for="goal">What is your goal?</label>
 
-		<textarea
-			placeholder="I will..."
-			id="goal"
-			name="goal"
-			class="mb-4 block h-20 w-full resize-none rounded-lg border-gray-600 bg-gray-900 px-4 py-2.5 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-		></textarea>
+		<Input placeholder="I will..." id="goal" bind:value={$goal} />
 
 		<Button>Hold me accountable</Button>
 	</form>
@@ -168,3 +171,5 @@
 		</li>
 	</ul>
 </section>
+
+<CreatePledge />
