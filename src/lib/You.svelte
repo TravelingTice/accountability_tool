@@ -14,8 +14,12 @@
 		type WithNullableProperties
 	} from './pledgeStore'
 	import Input from './shared/Input.svelte'
+	import { AlertTriangleIcon } from 'svelte-feather-icons'
 
 	let error: string | null = null
+
+	const searchParams = new URLSearchParams(window.location.search)
+	const fromCancel = searchParams.get('cancel') === 'true'
 
 	const handleSubmit = async () => {
 		error = null
@@ -57,7 +61,15 @@
 		</div>
 
 		<div class="flex flex-col items-center gap-8">
-			<Button>Continue to payment</Button>
+			<div class="flex flex-col items-center space-y-4">
+				{#if fromCancel}
+					<div class="flex gap-2">
+						<AlertTriangleIcon class="text-yellow-400" />
+						<p>Payment canceled, please try again.</p>
+					</div>
+				{/if}
+				<Button>Continue to payment</Button>
+			</div>
 			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>
 		</div>
 	</form>
