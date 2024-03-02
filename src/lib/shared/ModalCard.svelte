@@ -10,34 +10,38 @@
 	let modalElement: HTMLDivElement
 	let closeButton: HTMLButtonElement
 	let focusTrap: FocusTrap | null = null
+	let timeout: NodeJS.Timeout
 
-	function activateFocusTrap() {
-		if (!browser) return
+	// function activateFocusTrap() {
+	// 	if (!browser) return
 
-		setTimeout(() => {
-			focusTrap = createFocusTrap(modalElement, {
-				fallbackFocus: closeButton
-			})
-			focusTrap.activate()
-		}, 200)
-	}
+	// 	timeout = setTimeout(() => {
+	// 		focusTrap = createFocusTrap(modalElement, {
+	// 			fallbackFocus: closeButton
+	// 		})
+	// 		focusTrap.activate()
+	// 	}, 300)
+	// }
 
-	function deactivateFocusTrap() {
-		if (!browser) return
-		if (!focusTrap) return
+	// function deactivateFocusTrap() {
+	// 	if (!browser) return
+	// 	if (!focusTrap) return
+	// 	if (timeout) clearTimeout(timeout)
 
-		focusTrap.deactivate()
-		focusTrap = null
-	}
+	// 	focusTrap.deactivate()
+	// 	focusTrap = null
+	// }
 
-	// Activate focus trap when we are selected, and deactivate when not
-	$: if (modalElement) {
-		if ($step === forStep) {
-			activateFocusTrap()
-		} else {
-			deactivateFocusTrap()
-		}
-	}
+	// // Activate focus trap when we are selected, and deactivate when not
+	// $: if (modalElement) {
+	// 	if ($step === forStep) {
+	// 		console.log('activating focus trap', forStep)
+	// 		activateFocusTrap()
+	// 	} else {
+	// 		console.log('deactivating focus trap', forStep)
+	// 		deactivateFocusTrap()
+	// 	}
+	// }
 </script>
 
 <div class="flex h-full flex-col justify-end px-4" bind:this={modalElement}>
