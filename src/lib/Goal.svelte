@@ -4,7 +4,6 @@
 	import Input from './shared/Input.svelte'
 	import Button from './shared/Button.svelte'
 	import ModalCard from './shared/ModalCard.svelte'
-	import { onMount } from 'svelte'
 
 	let error = false
 
@@ -12,10 +11,6 @@
 		if (!$goal) return (error = true)
 		else step.next()
 	}
-
-	onMount(() => {
-		if ($step === null) $step = 'goal'
-	})
 </script>
 
 <ModalCard forStep="goal" title="Create your pledge">

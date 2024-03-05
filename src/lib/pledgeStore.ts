@@ -20,7 +20,7 @@ const createStepStore = () => {
 	const { set, subscribe, update } = queryParam<Step>('step')
 
 	const next = () => {
-		update((step) => {
+		update((step: Step) => {
 			if (!step) return null
 
 			const nextIndex = steps.indexOf(step) + 1
@@ -29,7 +29,7 @@ const createStepStore = () => {
 	}
 
 	const previous = () => {
-		update((step) => {
+		update((step: Step) => {
 			if (!step) return null
 
 			const nextIndex = steps.indexOf(step) - 1
@@ -71,7 +71,9 @@ export const notifyPartner = queryParam('notifyPartner', ssp.boolean(true), {
 	pushHistory: false
 })
 
-export const canPublic = queryParam('canPublic', ssp.boolean(false), { pushHistory: false })
+export const canPublic = queryParam('canPublic', ssp.boolean(false), {
+	pushHistory: false
+})
 
 export const name = queryParam('name', ssp.string(), { pushHistory: false })
 
