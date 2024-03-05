@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Your friend {{name}} has made a pledge!</title>
+	</head>
+	<body>
+		<p>Dear {{partnerName}},</p>
+		<p>
+			Your friend {{name}} has made a pledge on
+			<a href="https://doitorelse.net">https://doitorelse.net</a> stating that they will achieve a
+			goal by a certain deadline. Here are those details:
+		</p>
+		<ul>
+			<li>Goal: {{goal}}</li>
+			<li>Deadline: {{deadline}}</li>
+		</ul>
+		<p>
+			On the day of the deadline, we're sending another email in which you can say if {{name}} has
+			achieved this goal or not.
+		</p>
+		<p>
+			If {{name}} <strong>doesn't</strong> achieve their goal,
+			<strong>{{name}} will donate ${{amount}} to {{consequence}}.</strong> So please keep {{name}}
+			accountable to make sure they will reach their goal!
+		</p>
+		<p>Thanks for doing this great service.</p>
+		<p>Best regards,<br />Tice from <a href="https://doitorelse.net">https://doitorelse.net</a></p>
+	</body>
+</html>

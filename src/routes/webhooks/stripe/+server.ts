@@ -1,5 +1,7 @@
 import { SECRET_STRIPE_KEY, STRIPE_WEBHOOK_SECRET } from '$env/static/private'
+import { sendEmailTemplate, sendNotifyPartnerEmail } from '$lib/email/sendEmail'
 import type { Pledge } from '$lib/pledgeStore'
+import { sendSlackNotification } from '$lib/slack/sendSlackNotification'
 import { PrismaClient } from '@prisma/client'
 import { error, json, type RequestHandler } from '@sveltejs/kit'
 import Stripe from 'stripe'
@@ -28,22 +30,14 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const pledge = JSON.parse(session.metadata.pledge) as Pledge
 
-	const { amount, goal, name, consequence, partnerName, partnerEmail, deadline, canPublic } = pledge
-
 	const email = session.customer_details?.email ?? ''
 
 	try {
 		await prisma.pledge.create({
 			data: {
-				name,
+				...pledge,
 				email,
-				amount,
-				goal,
-				canPublic,
-				consequence,
-				partnerName,
-				partnerEmail,
-				deadline: new Date(deadline)
+				deadline: new Date(pledge.deadline)
 			}
 		})
 	} catch (err) {
@@ -52,9 +46,13 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const { notifyPartner } = session.metadata
 
-	// if (notifyPartner === 'true') {
+	if (notifyPartner === 'true') {
+		sendEmailTemplate('notifyPartner', pledge, pledge.partnerEmail)
+	}
 
-	// }
+	sendEmailTemplate('confirmation', pledge, email)
+
+	sendSlackNotification(pledge)
 
 	return json({ received: true })
 }
