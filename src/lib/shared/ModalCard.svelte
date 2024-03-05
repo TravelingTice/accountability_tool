@@ -33,15 +33,13 @@
 	// }
 
 	// // Activate focus trap when we are selected, and deactivate when not
-	// $: if (modalElement) {
-	// 	if ($step === forStep) {
-	// 		console.log('activating focus trap', forStep)
-	// 		activateFocusTrap()
-	// 	} else {
-	// 		console.log('deactivating focus trap', forStep)
-	// 		deactivateFocusTrap()
-	// 	}
-	// }
+	$: if (modalElement) {
+		if ($step === forStep) {
+			// activateFocusTrap()
+		} else {
+			// deactivateFocusTrap()
+		}
+	}
 </script>
 
 <div class="flex h-full flex-col justify-end px-4" bind:this={modalElement}>
