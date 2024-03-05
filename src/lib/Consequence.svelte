@@ -3,7 +3,14 @@
 	import { consequence, step } from './pledgeStore'
 	import Button from './shared/Button.svelte'
 
+	let error = false
+
 	const handleSubmit = () => {
+		if (!$consequence) {
+			error = true
+			return
+		}
+
 		step.next()
 	}
 </script>
@@ -49,6 +56,10 @@
 				<img src="/images/greenpeace.jpeg" alt="Greenpeace Logo" />
 			</label>
 		</div>
+
+		{#if error}
+			<p class="text-sm text-red-400">Please select one of the above consequences.</p>
+		{/if}
 
 		<div class="flex justify-between">
 			<Button variant="outline" type="button" on:click={step.previous}>Back</Button>

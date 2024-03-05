@@ -30,6 +30,7 @@
 		partnerName: $partnerName,
 		partnerEmail: $partnerEmail,
 		consequence: $consequence,
+		canPublic: $canPublic,
 		name: null
 	} satisfies WithNullableProperties<Pledge>
 

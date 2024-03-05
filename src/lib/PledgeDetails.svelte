@@ -5,19 +5,17 @@
 
 	export let pledge: WithNullableProperties<Pledge>
 
-	const { amount, consequence, goal, partnerEmail, deadline, partnerName } = pledge
-
 	$: deadlineStr = new Intl.DateTimeFormat('en-US', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric'
-	}).format(new Date(deadline ?? ''))
+	}).format(new Date(pledge.deadline ?? ''))
 </script>
 
 <ul class="detail-list">
 	<li>
 		<FlagIcon class="shrink-0" />
-		<p>Goal: <strong>{goal}</strong></p>
+		<p>Goal: <strong>{pledge.goal}</strong></p>
 	</li>
 	<li>
 		<CalendarIcon />
@@ -28,14 +26,16 @@
 		<p>
 			Consequence of not reaching goal:
 			<strong>
-				{consequence && amount && consequenceAsSentence(consequence, amount)}
+				{pledge.consequence &&
+					pledge.amount &&
+					consequenceAsSentence(pledge.consequence, pledge.amount)}
 			</strong>
 		</p>
 	</li>
 	<li>
 		<UserCheckIcon class="shrink-0" />
 		<p>
-			Accountability partner: <strong>{partnerName} ({partnerEmail})</strong>
+			Accountability partner: <strong>{pledge.partnerName} ({pledge.partnerEmail})</strong>
 		</p>
 	</li>
 </ul>
