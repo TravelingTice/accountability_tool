@@ -5,6 +5,7 @@ import { sendSlackNotification } from '$lib/slack/sendSlackNotification'
 import { PrismaClient } from '@prisma/client'
 import { error, json, type RequestHandler } from '@sveltejs/kit'
 import Stripe from 'stripe'
+import { dev } from '$app/environment'
 
 const prisma = new PrismaClient()
 const stripe = new Stripe(SECRET_STRIPE_KEY)
@@ -45,6 +46,9 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	const { notifyPartner } = session.metadata
+
+	// Only notify in prod
+	if (dev) return json({ received: true })
 
 	if (notifyPartner === 'true') {
 		sendEmailTemplate('notifyPartner', pledge, pledge.partnerEmail)
