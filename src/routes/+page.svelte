@@ -263,7 +263,7 @@
 	}
 
 	.consequence-list-item .image.logo img {
-		@apply w-48 md:h-auto;
+		@apply md:h-auto md:w-48;
 	}
 
 	.consequence-list-item .button-container {
