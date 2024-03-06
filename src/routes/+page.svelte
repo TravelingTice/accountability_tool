@@ -17,10 +17,12 @@
 <section class="mb-6 flex flex-col items-center space-y-8 px-4 pt-8 text-center">
 	<h1>Do it or else...</h1>
 	<h2>Link MASSIVE PAIN to not following through on your goals</h2>
-	<form on:submit|preventDefault={handleSubmit} class="space-y-2">
-		<label for="goal">What is your goal?</label>
+	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
+		<div class="space-y-2">
+			<label for="goal">What is your goal?</label>
 
-		<Input placeholder="I will..." id="goal" bind:value={$goal} />
+			<Input class="w-auto md:w-72" placeholder="I will..." id="goal" bind:value={$goal} />
+		</div>
 
 		<Button>Hold me accountable</Button>
 	</form>
@@ -198,7 +200,7 @@
 	}
 
 	.consequence-list-item {
-		@apply mx-auto max-w-md space-y-4 rounded-lg border border-gray-800 p-4 md:max-w-none;
+		@apply mx-auto w-full max-w-md space-y-4 rounded-lg border border-gray-800 p-4 md:max-w-3xl;
 		@apply md:space-y-2;
 		@media (min-width: 768px) {
 			display: grid;
@@ -223,6 +225,10 @@
 
 	.consequence-list-item .title {
 		grid-area: title;
+	}
+
+	.consequence-list-item:nth-child(even) .title {
+		@apply md:text-right;
 	}
 
 	.consequence-list-item .text {
