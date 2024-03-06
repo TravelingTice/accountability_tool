@@ -42,9 +42,9 @@
 	}
 </script>
 
-<div class="flex h-full flex-col justify-end px-4" bind:this={modalElement}>
+<div class="flex h-full flex-col justify-end px-4 sm:justify-center" bind:this={modalElement}>
 	<div
-		class="relative w-full overflow-hidden rounded-lg bg-gray-900 px-4 pb-6 pt-6 text-left align-bottom shadow-xl sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle"
+		class="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-gray-900 px-4 pb-6 pt-6 text-left align-bottom shadow-xl"
 	>
 		<button
 			bind:this={closeButton}

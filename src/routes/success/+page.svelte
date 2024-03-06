@@ -6,7 +6,7 @@
 	export let data: PageServerData
 </script>
 
-<section class="flex flex-col items-center space-y-8 px-4 py-8 text-center">
+<section class="mx-auto flex max-w-xl flex-col items-center space-y-8 px-4 py-8 text-center">
 	<h1>You did it!</h1>
 	<p>
 		Congratulations! Just now you linked MASSIVE PAIN to not following up on your goals. You put

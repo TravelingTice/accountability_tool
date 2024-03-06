@@ -42,11 +42,8 @@
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			on:click|self={() => dispatchEvent('close')}
-			class="flex min-h-screen flex-col justify-end bg-black bg-opacity-50 pb-20 pt-4 sm:block sm:p-0"
+			class="flex min-h-screen flex-col justify-end bg-black bg-opacity-50 pb-20 pt-4 md:justify-start"
 		>
-			<span class="hidden sm:inline-block sm:h-screen sm:align-middle" aria-hidden="true"
-				>&#8203;</span
-			>
 			<slot />
 		</div>
 	</div>
