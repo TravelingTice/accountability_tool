@@ -12,5 +12,67 @@
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
+
+		<script>
+			// Function to store data with expiration
+			function storeDataWithExpiration(key, value, daysToExpire) {
+				const now = new Date()
+				// `daysToExpire` converted to milliseconds
+				const expiration = now.getTime() + daysToExpire * 24 * 60 * 60 * 1000
+
+				const item = {
+					value: value,
+					expiration: expiration
+				}
+
+				try {
+					localStorage.setItem(key, JSON.stringify(item))
+				} catch {}
+			}
+
+			// Function to retrieve data, checking for expiration
+			function retrieveData(key) {
+				let itemStr
+
+				try {
+					itemStr = localStorage.getItem(key)
+				} catch {
+					return null
+				}
+
+				if (!itemStr) {
+					return null
+				}
+
+				const item = JSON.parse(itemStr)
+				const now = new Date()
+
+				// Check if the item has expired
+				if (now.getTime() > item.expiration) {
+					try {
+						localStorage.removeItem(key)
+					} catch {
+						return null
+					}
+					return null
+				}
+
+				return item.value
+			}
+
+			window.appziSettings = {
+				ready: function (appzi) {
+					setTimeout(() => {
+						const search = new URLSearchParams(window.location.search)
+						if (!search.has('step') && !retrieveData('appziShown')) {
+							// set in localstorage it's shown, to expire in 7 days
+							storeDataWithExpiration('appziShown', 'true', 7)
+
+							appzi.openWidget('28f4dc78-98c9-437a-aeb0-0992eca2c017')
+						}
+					}, 15000)
+				}
+			}
+		</script>
 	</body>
 </html>
