@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-	<title>Link Massive Pain To Not Achieving Your Goal - Do It Or Else</title>
+	<title>Do It Or Else - Link Massive Pain To Not Achieving Your Goal</title>
 	<link rel="canonical" href="https://doitorelse.net" />
 	<meta
 		name="description"
