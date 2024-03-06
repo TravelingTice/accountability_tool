@@ -11,6 +11,15 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Link Massive Pain To Not Achieving Your Goal - Do It Or Else</title>
+	<link rel="canonical" href="https://doitorelse.net" />
+	<meta
+		name="description"
+		content="Struggle to follow through on goals? 'Do It Or Else' links painful consequences to inaction, making it your ultimate accountability partner. Discover how!"
+	/>
+</svelte:head>
+
 <div class="my-8 space-y-12">
 	<section class="flex flex-col items-center space-y-8 px-4 text-center">
 		<div class="space-y-6">
