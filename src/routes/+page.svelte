@@ -2,278 +2,52 @@
 	import Button from '$lib/shared/Button.svelte'
 	import CreatePledge from '$lib/CreatePledge.svelte'
 	import Input from '$lib/shared/Input.svelte'
-	import { goal, step, consequence, type Consequence } from '$lib/pledgeStore'
+	import { goal, step } from '$lib/pledgeStore'
+	import ConsequenceList from './ConsequenceList.svelte'
+	import FAQ from './FAQ.svelte'
 
 	const handleSubmit = () => {
 		$step = 'goal'
 	}
-
-	const handleChooseConsequence = (consequence: Consequence) => () => {
-		$step = 'goal'
-		$consequence = consequence
-	}
 </script>
 
-<section class="mb-6 flex flex-col items-center space-y-8 px-4 pt-8 text-center">
-	<h1>Do it or else...</h1>
-	<h2>Link MASSIVE PAIN to not following through on your goals</h2>
-	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
-		<div class="space-y-2">
-			<label for="goal">What is your goal?</label>
-
-			<Input class="w-auto md:w-72" placeholder="I will..." id="goal" bind:value={$goal} />
+<div class="my-8 space-y-12">
+	<section class="flex flex-col items-center space-y-8 px-4 text-center">
+		<div class="space-y-6">
+			<h1>Do it or else...</h1>
+			<h2>Link MASSIVE PAIN to not following through on your goals</h2>
 		</div>
+		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
+			<div class="space-y-2">
+				<label for="goal">What is your goal?</label>
 
-		<Button>Hold me accountable</Button>
-	</form>
-</section>
-
-<section class="overflow-hidden px-4 py-6">
-	<h2 class="mb-4 text-center text-3xl font-bold">What will happen if you don't follow through?</h2>
-	<ul class="consequence-list">
-		<li class="consequence-list-item">
-			<h2 class="title">Donate to Trump's presidential campaign</h2>
-
-			<div class="text">
-				<p>
-					Donald Trump, the 45th U.S. President, is known for his unique, and sometimes
-					controversial political style. This year he's running again, focusing on strict
-					immigration rules, less regulation, and putting America first.
-				</p>
-				<p>
-					<strong>
-						Choose this as your consequence of not following through if you don't support Trump and
-						don't want him to become president again.
-					</strong>
-				</p>
+				<Input class="w-auto md:w-72" placeholder="I will..." id="goal" bind:value={$goal} />
 			</div>
 
-			<div class="image politician">
-				<div class="image-container">
-					<div class="logo-container">
-						<img src="/images/gop.png" alt="Republican Party logo" />
-					</div>
-					<img class="face-image" src="/images/trumpie.jpg" alt="Trump on stage" />
-				</div>
-			</div>
+			<Button>Hold me accountable</Button>
+		</form>
+	</section>
 
-			<div class="button-container">
-				<Button on:click={handleChooseConsequence('trump')}
-					>Donate to Trump if I don't follow through</Button
-				>
-			</div>
-		</li>
+	<section class="overflow-hidden px-4">
+		<h2 class="mb-4 text-center text-3xl font-bold">
+			What will happen if you don't follow through?
+		</h2>
+		<ConsequenceList />
+	</section>
 
-		<li class="consequence-list-item">
-			<h2 class="title">Donate to Biden's presidential campaign</h2>
-			<div class="text">
-				<p>
-					Joe Biden, the 46th President of the United States, focuses on unity, healthcare
-					improvement, and climate action. He supports stronger alliances abroad and policies for
-					middle-class growth. Biden uses a more traditional approach to communicate and govern.
-				</p>
-				<p>
-					<strong>
-						Choose this as your consequence of not following through if you don't support Biden and
-						don't want him to become president again.
-					</strong>
-				</p>
-			</div>
-			<div class="image politician">
-				<div class="image-container">
-					<div class="logo-container">
-						<img src="/images/dplogo.svg" alt="Republican Party logo" />
-					</div>
-					<img class="face-image" src="/images/joetje.webp" alt="Joe Biden on stage" />
-				</div>
-			</div>
+	<section>
+		<h2 class="mb-4 text-center text-3xl font-bold">FAQ</h2>
 
-			<div class="button-container">
-				<Button on:click={handleChooseConsequence('biden')}
-					>Donate to Biden if I don't follow through</Button
-				>
-			</div>
-		</li>
+		<FAQ />
+	</section>
+</div>
 
-		<li class="consequence-list-item">
-			<h2 class="title">Donate to the NRA (National Rifle Association)</h2>
-			<div class="text">
-				<p>
-					The National Rifle Association (NRA) is a powerful organization in the United States that
-					advocates for gun rights. It focuses on defending the Second Amendment, which allows
-					Americans to own guns. The NRA is known for its influence on politics, lobbying against
-					gun control laws.
-				</p>
-				<p>
-					<strong>
-						Choose this as your consequence of not following through if you don't support the NRA
-						and don't stand for their values.
-					</strong>
-				</p>
-			</div>
-			<div class="image logo">
-				<div class="relative my-2">
-					<img class="h-36 rounded-lg object-cover" src="/images/nra.png" alt="Logo of the NRA" />
-				</div>
-			</div>
-
-			<div class="button-container">
-				<Button on:click={handleChooseConsequence('nra')}
-					>Donate to the NRA if I don't follow through</Button
-				>
-			</div>
-		</li>
-
-		<li class="consequence-list-item">
-			<h2 class="title">Donate to the American Petroleum Institute</h2>
-			<div class="text">
-				<p>
-					The American Petroleum Institute (API) is a leading organization in the U.S. that
-					represents the oil and natural gas industry. It focuses on promoting the interests of its
-					members by lobbying for favorable policies and regulations. It plays a key role in shaping
-					energy policies and advocating for the use of fossil fuels.
-				</p>
-				<p>
-					<strong>
-						Choose this as your consequence of not following through if you don't support the
-						American Petroleum Institute and don't stand for their values.
-					</strong>
-				</p>
-			</div>
-			<div class="image logo">
-				<div class="relative my-2">
-					<img
-						class="h-32 rounded-lg object-cover"
-						src="/images/api.jpeg"
-						alt="Logo of the American Petroleum Institute"
-					/>
-				</div>
-			</div>
-
-			<div class="button-container">
-				<Button on:click={handleChooseConsequence('api')}
-					>Donate to the API if I don't follow through</Button
-				>
-			</div>
-		</li>
-
-		<li class="consequence-list-item">
-			<h2 class="title">Donate to Greenpeace</h2>
-			<div class="text">
-				<p>
-					Greenpeace is an international environmental organization known for its activism against
-					pollution, deforestation, and climate change. It campaigns for renewable energy and the
-					protection of natural habitats. Greenpeace uses direct action, research, and advocacy to
-					raise awareness and drive environmental change.
-				</p>
-				<p>
-					<strong>
-						Choose this as your consequence of not following through if you don't support Greenpeace
-						and don't stand for their values.
-					</strong>
-				</p>
-			</div>
-			<div class="image logo">
-				<div class="relative">
-					<img
-						class="h-36 rounded-lg object-cover"
-						src="/images/greenpeace.jpeg"
-						alt="Logo of Greenpeace"
-					/>
-				</div>
-			</div>
-
-			<div class="button-container">
-				<Button on:click={handleChooseConsequence('greenpeace')}
-					>Donate to Greenpeace if I don't follow through</Button
-				>
-			</div>
-		</li>
-	</ul>
-</section>
+<footer class="py-8">
+	<p class="text-center">
+		Do It Or Else is a project by <a class="underline" href="https://twitter.com/travelingtice"
+			>Tice Kralt</a
+		>
+	</p>
+</footer>
 
 <CreatePledge />
-
-<style>
-	.consequence-list {
-		@apply flex flex-col gap-4 md:gap-6;
-	}
-
-	.consequence-list-item {
-		@apply mx-auto w-full max-w-md space-y-4 rounded-lg border border-gray-800 p-4 md:max-w-3xl;
-		@apply md:space-y-2;
-		@media (min-width: 768px) {
-			display: grid;
-			grid-template-areas:
-				'title image'
-				'text image'
-				'button image';
-			grid-template-columns: 1fr auto;
-			grid-gap: 1rem;
-		}
-	}
-
-	.consequence-list-item:nth-child(even) {
-		@media (min-width: 768px) {
-			grid-template-areas:
-				'image title'
-				'image text'
-				'image button';
-			grid-template-columns: auto 1fr;
-		}
-	}
-
-	.consequence-list-item .title {
-		grid-area: title;
-	}
-
-	.consequence-list-item:nth-child(even) .title {
-		@apply md:text-right;
-	}
-
-	.consequence-list-item .text {
-		grid-area: text;
-		@apply space-y-2 md:max-w-sm;
-	}
-
-	.consequence-list-item:nth-child(even) .text {
-		@apply md:place-self-end;
-	}
-
-	.consequence-list-item .image {
-		grid-area: image;
-		place-self: center;
-		@apply flex w-full justify-center;
-	}
-
-	.consequence-list-item .image.politician .image-container {
-		@apply relative mb-2 mt-6 md:mr-8;
-	}
-
-	.consequence-list-item .image.politician .logo-container {
-		@apply absolute -right-14 -top-8 rotate-6 rounded-full bg-white p-4 md:-right-8;
-	}
-
-	.consequence-list-item .image.politician .face-image {
-		@apply h-48 w-48 rounded-full object-cover md:h-40 md:w-40;
-	}
-
-	.consequence-list-item .image.politician .logo-container img {
-		@apply h-16 w-16 md:h-12 md:w-12;
-	}
-
-	.consequence-list-item .image.logo img {
-		@apply md:h-auto md:w-48;
-	}
-
-	.consequence-list-item .button-container {
-		grid-area: button;
-		@apply flex justify-center md:justify-start;
-	}
-
-	.consequence-list-item:nth-child(even) .button-container {
-		@media (min-width: 768px) {
-			justify-content: flex-end;
-		}
-	}
-</style>
