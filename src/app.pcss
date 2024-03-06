@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans&display=swap');
+
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
@@ -8,11 +10,22 @@ body {
 }
 
 h1 {
-	@apply text-5xl font-bold;
+	@apply font-heading text-5xl text-gray-200 sm:text-7xl;
+	letter-spacing: 0.07em;
+}
+
+h2.subtitle {
+	@apply text-2xl sm:text-3xl;
 }
 
 h2 {
-	@apply text-2xl font-bold;
+	@apply font-heading text-3xl text-gray-200 sm:text-4xl;
+	letter-spacing: 0.07em;
+}
+
+h3 {
+	@apply font-heading text-2xl text-gray-200 sm:text-3xl;
+	letter-spacing: 0.07em;
 }
 
 div[data-appzi-dom='1'] {

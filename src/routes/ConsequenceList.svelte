@@ -10,7 +10,7 @@
 
 <ul class="consequence-list">
 	<li class="consequence-list-item">
-		<h2 class="title">Donate to Trump's presidential campaign</h2>
+		<h3 class="title">Donate to Trump's presidential campaign</h3>
 
 		<div class="text">
 			<p>
@@ -43,7 +43,7 @@
 	</li>
 
 	<li class="consequence-list-item">
-		<h2 class="title">Donate to Biden's presidential campaign</h2>
+		<h3 class="title">Donate to Biden's presidential campaign</h3>
 		<div class="text">
 			<p>
 				Joe Biden, the 46th President of the United States, focuses on unity, healthcare
@@ -74,7 +74,7 @@
 	</li>
 
 	<li class="consequence-list-item">
-		<h2 class="title">Donate to the NRA (National Rifle Association)</h2>
+		<h3 class="title">Donate to the NRA (National Rifle Association)</h3>
 		<div class="text">
 			<p>
 				The National Rifle Association (NRA) is a powerful organization in the United States that
@@ -103,7 +103,7 @@
 	</li>
 
 	<li class="consequence-list-item">
-		<h2 class="title">Donate to the American Petroleum Institute</h2>
+		<h3 class="title">Donate to the American Petroleum Institute</h3>
 		<div class="text">
 			<p>
 				The American Petroleum Institute (API) is a leading organization in the U.S. that represents
@@ -136,7 +136,7 @@
 	</li>
 
 	<li class="consequence-list-item">
-		<h2 class="title">Donate to Greenpeace</h2>
+		<h3 class="title">Donate to Greenpeace</h3>
 		<div class="text">
 			<p>
 				Greenpeace is an international environmental organization known for its activism against

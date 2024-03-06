@@ -4,6 +4,9 @@ const config = {
 
 	theme: {
 		extend: {
+			fontFamily: {
+				heading: ['Bebas Neue', 'sans-serif']
+			},
 			zIndex: {
 				review: 2,
 				modal: 5

@@ -24,7 +24,7 @@
 	<section class="flex flex-col items-center space-y-8 px-4 text-center">
 		<div class="space-y-6">
 			<h1>Do it or else...</h1>
-			<h2>Link MASSIVE PAIN to not following through on your goals</h2>
+			<h2 class="subtitle">Link MASSIVE PAIN to not following through on your goals</h2>
 		</div>
 		<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 			<div class="space-y-2">
@@ -38,14 +38,12 @@
 	</section>
 
 	<section class="overflow-hidden px-4">
-		<h2 class="mb-4 text-center text-3xl font-bold">
-			What will happen if you don't follow through?
-		</h2>
+		<h2 class="mb-4 text-center">What will happen if you don't follow through?</h2>
 		<ConsequenceList />
 	</section>
 
 	<section>
-		<h2 class="mb-4 text-center text-3xl font-bold">FAQ</h2>
+		<h2 class="mb-4 text-center font-bold">FAQ</h2>
 
 		<FAQ />
 	</section>

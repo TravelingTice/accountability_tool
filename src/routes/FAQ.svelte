@@ -61,10 +61,6 @@
 </div>
 
 <style>
-	h3 {
-		@apply text-2xl font-bold;
-	}
-
 	dl {
 		@apply space-y-6;
 	}
