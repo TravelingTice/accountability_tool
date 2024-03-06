@@ -31,7 +31,7 @@
 
 {#if $step && hydrated}
 	<div
-		class="fixed inset-0 z-10 overflow-y-auto"
+		class="z-modal fixed inset-0 overflow-y-auto"
 		aria-labelledby="modal-title"
 		role="dialog"
 		aria-modal="true"
