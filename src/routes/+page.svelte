@@ -18,6 +18,16 @@
 		name="description"
 		content="Struggle to follow through on goals? 'Do It Or Else' links painful consequences to inaction, making it your ultimate accountability partner. Discover how!"
 	/>
+
+	<meta
+		property="og:title"
+		content="Do It Or Else - Link Massive Pain To Not Achieving Your Goal"
+	/>
+	<meta property="og:url" content="https://doitorelse.net" />
+	<meta
+		property="og:description"
+		content="Struggle to follow through on goals? 'Do It Or Else' links painful consequences to inaction, making it your ultimate accountability partner."
+	/>
 </svelte:head>
 
 <div class="my-8 space-y-12">

@@ -6,6 +6,15 @@
 	export let data: PageServerData
 </script>
 
+<svelte:head>
+	<title>You did it {data.name}!!! Review your pledge - Do It Or Else</title>
+
+	<meta
+		property="og:title"
+		content="You did it {data.name}!!! Review your pledge - Do It Or Else"
+	/>
+</svelte:head>
+
 <section class="mx-auto flex max-w-xl flex-col items-center space-y-8 px-4 py-8 text-center">
 	<h1>You did it!</h1>
 	<p>
