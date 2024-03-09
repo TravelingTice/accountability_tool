@@ -25,3 +25,9 @@ model Pledge {
   partnerEmail  String
   canPublic     Boolean  @default(false)
 }
+
+model InterestedUser {
+  id            Int      @id @default(autoincrement())
+  email         String 
+  feature       String
+}

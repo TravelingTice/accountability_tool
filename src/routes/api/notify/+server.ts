@@ -1,11 +1,23 @@
 import { SLACK_WEBHOOK_URL } from '$env/static/private'
+import { PrismaClient } from '@prisma/client'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import SlackNotify from 'slack-notify'
 
 const slack = SlackNotify(SLACK_WEBHOOK_URL)
 
+const prisma = new PrismaClient()
+
 export const POST: RequestHandler = async ({ request }) => {
 	const { email, feature } = await request.json()
+
+	prisma.interestedUser
+		.create({
+			data: {
+				email,
+				feature
+			}
+		})
+		.catch((err) => console.error('Error creating InterestedUser', err))
 
 	slack
 		.send({
