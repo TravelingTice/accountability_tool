@@ -12,7 +12,9 @@ export const POST: RequestHandler = async ({ request }) => {
 				feature
 			}
 		})
-		.catch((err) => console.error('Error creating InterestedUser', err))
+		.catch((err) =>
+			console.error(`Error creating InterestedUser (email: ${email}, feature: ${feature})`, err)
+		)
 
 	slack
 		.send({
@@ -21,7 +23,9 @@ export const POST: RequestHandler = async ({ request }) => {
 			text: `Someone wants to stay in the loop on the "${feature}" feature: ${email}`,
 			username: 'Accountability Bot'
 		})
-		.catch((err) => console.error('There was an error with slack', err))
+		.catch((err) =>
+			console.error(`There was an error with slack (email: ${email}, feature: ${feature})`, err)
+		)
 
 	return json({ success: true })
 }
