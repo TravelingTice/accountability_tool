@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageServerData } from './$types'
-	import PledgeDetails from '$lib/PledgeDetails.svelte'
+	import PledgeDetails from '$lib/createPledge/PledgeDetails.svelte'
 	import ButtonLink from '$lib/shared/ButtonLink.svelte'
 
 	export let data: PageServerData

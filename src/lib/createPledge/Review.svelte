@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ModalCard from './shared/ModalCard.svelte'
-	import Button from './shared/Button.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
+	import Button from '../shared/Button.svelte'
 	import {
 		amount,
 		consequence,
@@ -14,7 +14,7 @@
 		notifyPartner,
 		canPublic
 	} from './pledgeStore'
-	import Checkbox from './shared/Checkbox.svelte'
+	import Checkbox from '../shared/Checkbox.svelte'
 	import { consequenceAsWord } from './consequenceAsSentence'
 	import PledgeDetails from './PledgeDetails.svelte'
 
@@ -43,7 +43,7 @@
 	}
 </script>
 
-<ModalCard forStep="review" title="Please review your pledge">
+<ModalCard title="Please review your pledge" on:close={() => ($step = null)}>
 	<div class="space-y-8">
 		<div class="space-y-4">
 			<p>Please carefully review the details of your pledge:</p>

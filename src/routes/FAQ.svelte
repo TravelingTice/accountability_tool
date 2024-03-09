@@ -12,11 +12,13 @@
 					when your goal depends on the action or opinions of others, that doesn't work.
 				</p>
 				<p>
-					Then you pick a consequence that you really don't want to happen. There are 5 consequences
-					you can pick from. They are all organization or charity donations. Depending on your
-					identity and values, pick the one that sounds the most painful for you. Like for example
-					you'd never identity as a Trump supporter. Put your identity on the line and become a
-					Trump supporter if you don't follow through on your goal.
+					Then you pick a consequence that you really don't want to happen. There are 7 consequences
+					you can pick from, in 2 categories: Posting something you don't want or donating to a
+					cause you don't stand for. The 1st category isn't open yet, but you can get notified when
+					it is! Depending on your identity and values, pick the consequence that sounds the most
+					painful for you. Like for example you'd never identity as a Trump supporter. Put your
+					identity on the line and become a Trump supporter if you don't follow through on your
+					goal.
 				</p>
 				<p>
 					After this, you also pick an accountability partner. This person will have to let the app

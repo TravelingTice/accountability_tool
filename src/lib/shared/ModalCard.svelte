@@ -1,45 +1,13 @@
 <script lang="ts">
-	import { browser } from '$app/environment'
-	import { step, type Step } from '$lib/pledgeStore'
-	import { createFocusTrap, type FocusTrap } from 'focus-trap'
+	import { createEventDispatcher } from 'svelte'
 	import { XIcon } from 'svelte-feather-icons'
 
 	export let title: string
-	export let forStep: Step
 
 	let modalElement: HTMLDivElement
 	let closeButton: HTMLButtonElement
-	let focusTrap: FocusTrap | null = null
-	let timeout: NodeJS.Timeout
 
-	// function activateFocusTrap() {
-	// 	if (!browser) return
-
-	// 	timeout = setTimeout(() => {
-	// 		focusTrap = createFocusTrap(modalElement, {
-	// 			fallbackFocus: closeButton
-	// 		})
-	// 		focusTrap.activate()
-	// 	}, 300)
-	// }
-
-	// function deactivateFocusTrap() {
-	// 	if (!browser) return
-	// 	if (!focusTrap) return
-	// 	if (timeout) clearTimeout(timeout)
-
-	// 	focusTrap.deactivate()
-	// 	focusTrap = null
-	// }
-
-	// // Activate focus trap when we are selected, and deactivate when not
-	$: if (modalElement) {
-		if ($step === forStep) {
-			// activateFocusTrap()
-		} else {
-			// deactivateFocusTrap()
-		}
-	}
+	const dispatchEvent = createEventDispatcher()
 </script>
 
 <div class="flex h-full flex-col justify-end px-4 sm:justify-center" bind:this={modalElement}>
@@ -49,7 +17,7 @@
 		<button
 			bind:this={closeButton}
 			class="absolute right-1 top-1 rounded-full p-2 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-			on:click={() => ($step = null)}
+			on:click={() => dispatchEvent('close')}
 		>
 			<XIcon />
 			<span class="sr-only">Close this popup window</span></button

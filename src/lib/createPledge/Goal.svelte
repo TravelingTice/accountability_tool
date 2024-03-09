@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goal, step } from './pledgeStore'
 	import { AlertTriangleIcon, CheckIcon } from 'svelte-feather-icons'
-	import Input from './shared/Input.svelte'
-	import Button from './shared/Button.svelte'
-	import ModalCard from './shared/ModalCard.svelte'
+	import Input from '../shared/Input.svelte'
+	import Button from '../shared/Button.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
 
 	let error = false
 
@@ -13,7 +13,7 @@
 	}
 </script>
 
-<ModalCard forStep="goal" title="Create your pledge">
+<ModalCard title="Create your pledge" on:close={() => ($step = null)}>
 	<div class="space-y-2">
 		<div class="flex gap-2">
 			<AlertTriangleIcon size="20" class="mt-1 shrink-0 text-yellow-400" />

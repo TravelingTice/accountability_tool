@@ -1,6 +1,6 @@
 <script lang="ts">
-	import ModalCard from './shared/ModalCard.svelte'
-	import Button from './shared/Button.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
+	import Button from '../shared/Button.svelte'
 	import {
 		name,
 		step,
@@ -13,7 +13,7 @@
 		canPublic,
 		notifyPartner
 	} from './pledgeStore'
-	import Input from './shared/Input.svelte'
+	import Input from '../shared/Input.svelte'
 	import { AlertTriangleIcon } from 'svelte-feather-icons'
 
 	let error: string | null = null
@@ -53,7 +53,7 @@
 	}
 </script>
 
-<ModalCard forStep="you" title="Fill in your details">
+<ModalCard title="Fill in your details" on:close={() => ($step = null)}>
 	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 		<div class="space-y-2">
 			<label class="block" for="name">Your name</label>

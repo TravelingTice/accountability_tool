@@ -1,7 +1,7 @@
 import { POSTMARK_API_TOKEN } from '$env/static/private'
 import postmark from 'postmark'
-import type { Pledge } from '$lib/pledgeStore'
-import { consequenceAsSentence, consequenceAsWord } from '$lib/consequenceAsSentence'
+import type { Pledge } from '$lib/createPledge/pledgeStore'
+import { consequenceAsSentence, consequenceAsWord } from '$lib/createPledge/consequenceAsSentence'
 import { loadTemplate, type Template } from './loadTemplate'
 
 export const sendEmailTemplate = async (template: Template, pledge: Pledge, to: string) => {

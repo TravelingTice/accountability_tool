@@ -1,5 +1,5 @@
 import { SECRET_STRIPE_KEY } from '$env/static/private'
-import type { Pledge } from '$lib/pledgeStore'
+import type { Pledge } from '$lib/createPledge/pledgeStore'
 import { json, type RequestHandler } from '@sveltejs/kit'
 import Stripe from 'stripe'
 

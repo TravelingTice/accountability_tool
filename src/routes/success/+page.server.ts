@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types'
 import { SECRET_STRIPE_KEY } from '$env/static/private'
 import Stripe from 'stripe'
 import { error } from '@sveltejs/kit'
-import type { Pledge } from '$lib/pledgeStore'
+import type { Pledge } from '$lib/createPledge/pledgeStore'
 
 const stripe = new Stripe(SECRET_STRIPE_KEY)
 

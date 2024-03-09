@@ -1,10 +1,12 @@
 <script lang="ts">
 	import Button from '$lib/shared/Button.svelte'
-	import CreatePledge from '$lib/CreatePledge.svelte'
+	import CreatePledge from './CreatePledge.svelte'
 	import Input from '$lib/shared/Input.svelte'
-	import { goal, step } from '$lib/pledgeStore'
+	import { goal, step } from '$lib/createPledge/pledgeStore'
 	import ConsequenceList from './ConsequenceList.svelte'
 	import FAQ from './FAQ.svelte'
+	import PostSocialsComingSoon from './PostSocialsComingSoon.svelte'
+	import SendMessageComingSoon from './SendMessageComingSoon.svelte'
 
 	const handleSubmit = () => {
 		$step = 'goal'
@@ -68,3 +70,7 @@
 </footer>
 
 <CreatePledge />
+
+<PostSocialsComingSoon />
+
+<SendMessageComingSoon />

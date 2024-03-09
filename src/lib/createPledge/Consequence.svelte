@@ -1,7 +1,8 @@
 <script lang="ts">
-	import ModalCard from './shared/ModalCard.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
 	import { consequence, step } from './pledgeStore'
-	import Button from './shared/Button.svelte'
+	import Button from '../shared/Button.svelte'
+	import { messageComingSoonModal, postComingSoonModal } from '$lib/comingSoon/modalsStore'
 
 	let error = false
 
@@ -15,10 +16,23 @@
 	}
 </script>
 
-<ModalCard forStep="consequence" title="What will your consequence be if you don't follow through?">
+<ModalCard
+	title="What will your consequence be if you don't follow through?"
+	on:close={() => ($step = null)}
+>
 	<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
 		<div role="radiogroup" aria-labelledby="groupLabel">
 			<p class="sr-only" id="groupLabel">Choose a consequence:</p>
+
+			<button type="button" on:click={postComingSoonModal.on} class="coming-soon">
+				<p>Post something embarrassing on the socials</p>
+				<img src="/images/socials.png" alt="Demo embarrassing post on social media" />
+			</button>
+
+			<button type="button" on:click={messageComingSoonModal.on} class="coming-soon">
+				<p>Send an embarrassing private message</p>
+				<img src="/images/message.png" alt="Demo embarrassing private message" />
+			</button>
 
 			<label class:selected={$consequence === 'trump'} for="trump">
 				<input type="radio" id="trump" name="options" bind:group={$consequence} value="trump" />
@@ -70,14 +84,20 @@
 
 <style>
 	[role='radiogroup'] {
-		@apply flex flex-col gap-2;
+		@apply flex max-h-96 flex-col gap-2 overflow-y-scroll p-2;
 	}
 
-	[role='radiogroup'] label {
+	[role='radiogroup'] label,
+	[role='radiogroup'] .coming-soon {
 		@apply flex cursor-pointer items-center rounded-lg bg-slate-100 px-4 py-2 text-lg font-bold text-gray-700;
 	}
 
-	[role='radiogroup'] label p {
+	[role='radiogroup'] .coming-soon {
+		@apply text-left;
+	}
+
+	[role='radiogroup'] label p,
+	[role='radiogroup'] .coming-soon p {
 		@apply grow;
 	}
 
@@ -87,6 +107,10 @@
 
 	[role='radiogroup'] img {
 		@apply h-16 w-16 rounded-full object-cover;
+	}
+
+	[role='radiogroup'] .coming-soon img {
+		@apply w-auto rounded-sm;
 	}
 
 	[role='radiogroup'] label.selected {

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ModalCard from './shared/ModalCard.svelte'
-	import Button from './shared/Button.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
+	import Button from '../shared/Button.svelte'
 	import { deadline, step } from './pledgeStore'
-	import DateInput from './shared/DateInput.svelte'
+	import DateInput from '../shared/DateInput.svelte'
 
 	let error: string | null = null
 
@@ -32,7 +32,7 @@
 	}
 </script>
 
-<ModalCard forStep="deadline" title="When will you complete your goal by?">
+<ModalCard title="When will you complete your goal by?" on:close={() => ($step = null)}>
 	<form on:submit|preventDefault={handleSubmit} class="space-y-2">
 		<label class="block" for="deadline">Deadline</label>
 

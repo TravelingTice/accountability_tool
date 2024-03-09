@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ModalCard from './shared/ModalCard.svelte'
-	import Button from './shared/Button.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
+	import Button from '../shared/Button.svelte'
 	import { partnerName, partnerEmail, step } from './pledgeStore'
-	import Input from './shared/Input.svelte'
+	import Input from '../shared/Input.svelte'
 
 	let nameError: string | null = null
 	let emailError: string | null = null
@@ -27,7 +27,7 @@
 	}
 </script>
 
-<ModalCard forStep="partner" title="Who will keep you accountable?">
+<ModalCard title="Who will keep you accountable?" on:close={() => ($step = null)}>
 	<p>
 		At the end of your challenge on the day of your deadline, we will send your accountability
 		partner an email, asking them if you really achieved your goal.

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Siema from 'siema'
 	import { browser } from '$app/environment'
-	import { step, steps } from '../pledgeStore'
+	import { step, steps } from '../createPledge/pledgeStore'
 	import { createEventDispatcher } from 'svelte'
 
 	let siemaContainer: HTMLDivElement

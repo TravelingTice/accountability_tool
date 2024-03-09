@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/shared/Button.svelte'
-	import { step, consequence, type Consequence } from '$lib/pledgeStore'
+	import { step, consequence, type Consequence } from '$lib/createPledge/pledgeStore'
+	import { postComingSoonModal, messageComingSoonModal } from '$lib/comingSoon/modalsStore'
 
 	const handleChooseConsequence = (consequence: Consequence) => () => {
 		$step = 'goal'
@@ -38,7 +39,7 @@
 		</div>
 
 		<div class="button-container">
-			<Button on:click={handleChooseConsequence('social_media')}
+			<Button on:click={postComingSoonModal.on}
 				>Post something embarrassing on my social media if I don't follow through</Button
 			>
 		</div>
@@ -71,7 +72,7 @@
 		</div>
 
 		<div class="button-container">
-			<Button on:click={handleChooseConsequence('message')}>
+			<Button on:click={messageComingSoonModal.on}>
 				Send one of my contacts an embarrassing message if I don't follow through
 			</Button>
 		</div>

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition'
-	import { step } from '$lib/pledgeStore'
 	import { browser } from '$app/environment'
 	import { createEventDispatcher, onMount } from 'svelte'
+
+	export let isOpen: boolean
 
 	const dispatchEvent = createEventDispatcher()
 
@@ -18,7 +19,7 @@
 		}
 	}
 
-	$: if ($step) {
+	$: if (isOpen) {
 		toggleBodyScroll(true)
 	} else {
 		toggleBodyScroll(false)
@@ -29,13 +30,13 @@
 	})
 </script>
 
-{#if $step && hydrated}
+{#if isOpen && hydrated}
 	<div
-		class="z-modal fixed inset-0 overflow-y-auto"
+		class="fixed inset-0 z-modal overflow-y-auto"
 		aria-labelledby="modal-title"
 		role="dialog"
 		aria-modal="true"
-		transition:fade={{ duration: 300 }}
+		transition:fade={{ duration: 200 }}
 	>
 		<!-- Cross icon is focusable to close modal -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->

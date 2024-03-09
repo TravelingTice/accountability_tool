@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ModalCard from './shared/ModalCard.svelte'
+	import ModalCard from '../shared/ModalCard.svelte'
 	import { amount, step } from './pledgeStore'
-	import Button from './shared/Button.svelte'
+	import Button from '../shared/Button.svelte'
 
 	let selectedValue = $amount ? $amount.toString() : ''
 
@@ -26,7 +26,7 @@
 	}
 </script>
 
-<ModalCard forStep="money" title="How much will you donate?">
+<ModalCard title="How much will you donate?" on:close={() => ($step = null)}>
 	<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
 		<div class="space-y-2">
 			<label for="dropdown" class="block">Donation amount:</label>
