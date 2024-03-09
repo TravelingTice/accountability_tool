@@ -10,6 +10,73 @@
 
 <ul class="consequence-list">
 	<li class="consequence-list-item">
+		<h3 class="title">Post something embarrassing to your social media</h3>
+
+		<div class="text">
+			<p>
+				When not following through on your goal, we will automatically post something embarrassing
+				to your social media. This is going to be a message you wouldn't want to share with your
+				friends and family and the feeling of discomfort should motivate you to go achieve your
+				goal.
+			</p>
+			<p>
+				<strong>
+					Choose this as your consequence if you want to put your online social media reputation on
+					the line for not achieving your goal.
+				</strong>
+			</p>
+		</div>
+
+		<div class="image demo">
+			<div class="relative my-2">
+				<img
+					class="rounded-lg object-cover"
+					src="/images/socials.png"
+					alt="Demo of embarrassing social media post"
+				/>
+			</div>
+		</div>
+
+		<div class="button-container">
+			<Button on:click={handleChooseConsequence('social_media')}
+				>Post something embarrassing on my social media if I don't follow through</Button
+			>
+		</div>
+	</li>
+	<li class="consequence-list-item">
+		<h3 class="title">Send someone a message you don't want to send</h3>
+
+		<div class="text">
+			<p>
+				When not following through on your goal, we will automatically send a message to someone in
+				your network that you wouldn't want to send. The feeling of discomfort and knowing you're
+				about to send something embarrassing should motivate you to reach your goal!
+			</p>
+			<p>
+				<strong>
+					Choose this as your consequence if you want to put your friendship on the line for not
+					achieving your goal.
+				</strong>
+			</p>
+		</div>
+
+		<div class="image demo">
+			<div class="relative my-2">
+				<img
+					class="rounded-lg object-cover"
+					src="/images/message.png"
+					alt="Demo of embarrassing private message"
+				/>
+			</div>
+		</div>
+
+		<div class="button-container">
+			<Button on:click={handleChooseConsequence('message')}>
+				Send one of my contacts an embarrassing message if I don't follow through
+			</Button>
+		</div>
+	</li>
+	<li class="consequence-list-item">
 		<h3 class="title">Donate to Trump's presidential campaign</h3>
 
 		<div class="text">
@@ -239,6 +306,10 @@
 
 	.consequence-list-item .image.logo img {
 		@apply md:h-auto md:w-48;
+	}
+
+	.consequence-list-item .image.demo img {
+		@apply md:h-auto md:w-80;
 	}
 
 	.consequence-list-item .button-container {
