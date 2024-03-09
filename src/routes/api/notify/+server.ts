@@ -7,12 +7,14 @@ const slack = SlackNotify(SLACK_WEBHOOK_URL)
 export const POST: RequestHandler = async ({ request }) => {
 	const { email, feature } = await request.json()
 
-	slack.send({
-		channel: '#accountability-tool',
-		icon_emoji: ':bell:',
-		text: `Someone wants to stay in the loop on the "${feature}" feature: ${email}`,
-		username: 'Accountability Bot'
-	})
+	slack
+		.send({
+			channel: '#accountability-tool',
+			icon_emoji: ':bell:',
+			text: `Someone wants to stay in the loop on the "${feature}" feature: ${email}`,
+			username: 'Accountability Bot'
+		})
+		.catch((err) => console.error('There was an error with slack', err))
 
 	return json({ success: true })
 }
