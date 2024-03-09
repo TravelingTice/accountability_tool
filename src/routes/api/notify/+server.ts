@@ -1,9 +1,6 @@
-import { SLACK_WEBHOOK_URL } from '$env/static/private'
 import { prisma } from '$lib/prisma/client'
+import { slack } from '$lib/slack/client'
 import { json, type RequestHandler } from '@sveltejs/kit'
-import SlackNotify from 'slack-notify'
-
-const slack = SlackNotify(SLACK_WEBHOOK_URL)
 
 export const POST: RequestHandler = async ({ request }) => {
 	const { email, feature } = await request.json()
