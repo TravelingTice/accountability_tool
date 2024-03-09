@@ -2,12 +2,11 @@ import { SECRET_STRIPE_KEY, STRIPE_WEBHOOK_SECRET } from '$env/static/private'
 import { sendEmailTemplate } from '$lib/email/sendEmail'
 import type { Pledge } from '$lib/createPledge/pledgeStore'
 import { sendSlackNotification } from '$lib/slack/sendSlackNotification'
-import { PrismaClient } from '@prisma/client'
 import { error, json, type RequestHandler } from '@sveltejs/kit'
 import Stripe from 'stripe'
 import { dev } from '$app/environment'
+import { prisma } from '$lib/prisma/client'
 
-const prisma = new PrismaClient()
 const stripe = new Stripe(SECRET_STRIPE_KEY)
 
 export const POST: RequestHandler = async ({ request }) => {
